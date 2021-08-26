@@ -5,6 +5,17 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('home');
+		$data = array(
+			'content'	=> 'home',
+		);
+		$this->load->view('components/main', $data);
+	}
+
+	public function homePenjualan()
+	{
+		$data = array(
+			'content'	=> 'penjualan',
+		);
+		$this->load->view('components/main', $data);
 	}
 }
