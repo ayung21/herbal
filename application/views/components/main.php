@@ -1,13 +1,13 @@
 <?php $this->load->view('components/headerHTML'); ?>
 
-<body class="skin-blue">
+<body class="skin-blue sidebar-collapse sidebar-open">
     <div class="wrapper">
 
         <header class="main-header">
             <!-- Logo -->
             <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
             <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top" role="navigation">
+            <nav class="navbar navbar-static-top header-info" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
