@@ -18,4 +18,12 @@ class Home extends CI_Controller {
 		);
 		$this->load->view('components/main', $data);
 	}
+
+	public function masterBarang()
+	{
+		$data = array(
+			'content'	=> 'master_barang',
+		);
+		$this->load->view('components/main', $data);
+	}
 }
