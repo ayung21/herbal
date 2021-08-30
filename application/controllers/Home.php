@@ -6,7 +6,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'content'	=> 'home',
+			'content'	=> 'penjualan',
 		);
 		$this->load->view('components/main', $data);
 	}
@@ -23,6 +23,13 @@ class Home extends CI_Controller {
 	{
 		$data = array(
 			'content'	=> 'master_barang',
+		);
+		$this->load->view('components/main', $data);
+	}
+
+	public function listBarangToko(){
+		$data = array(
+			'content'	=> 'list_barang_toko',
 		);
 		$this->load->view('components/main', $data);
 	}
