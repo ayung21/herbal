@@ -19,6 +19,8 @@
   <link href="<?= base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
   <!-- iCheck -->
   <link href="<?= base_url(); ?>assets/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+  <!-- DATA TABLES -->
+  <link href="<?= base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
   <!-- Morris chart -->
   <link href="<?= base_url(); ?>assets/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
   <!-- jvectormap -->

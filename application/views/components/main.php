@@ -1,17 +1,23 @@
 <?php $this->load->view('components/headerHTML'); ?>
 
-<body class="skin-blue sidebar-collapse sidebar-open">
+<body class="skin-blue">
     <div class="wrapper">
 
         <header class="main-header">
             <!-- Logo -->
             <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
             <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top header-info" role="navigation">
+            <nav class="navbar navbar-static-top header-info top-header-info" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
-                </a>
+                </a> -->
+                <!-- <a href="#" class="sidebar-toggle" id="toggle-menu" style="display: block;">
+                <i class="fa fa-bars" aria-hidden="true" style="color: white;"></i>
+                </a> -->
+                <button class="button-tombol-menu show-sidebar">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
@@ -415,7 +421,7 @@
         <!-- Right side column. Contains the navbar and content of the page -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            <!-- <section class="content-header">
                 <h1>
                     Dashboard
                     <small>Control panel</small>
@@ -424,7 +430,7 @@
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Dashboard</li>
                 </ol>
-            </section>
+            </section> -->
 
             <?php $this->load->view($content) ?>
 
