@@ -33,4 +33,10 @@ class Home extends CI_Controller {
 		);
 		$this->load->view('components/main', $data);
 	}
+	public function listToko(){
+		$data = array(
+			'content'	=> 'list_toko',
+		);
+		$this->load->view('components/main', $data);
+	}
 }
