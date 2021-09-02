@@ -4,10 +4,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Snippet - BBBootstrap</title>
+  <title>Daftar Toko</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="shortcut icon" href="#">
   <style>
     body {
       color: #000;
@@ -196,7 +197,8 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card2 card border-0 px-4 py-5">
+          <div class="card2 card border-0 px-4 py-5" id="form-daftar">
+            <?php echo form_open('Login/daftarAkun') ?>
             <div class="row px-3 mb-4">
               <div class="line"></div>
               <small class="or text-center">Sign Up </small>
@@ -206,26 +208,25 @@
               <label class="mb-1">
                 <h6 class="mb-0 text-sm">Email Address</h6>
               </label>
-              <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address" />
+              <input class="form-control" type="text" name="email" placeholder="Enter a valid email address" value="" autocomplete="off" />
+            </div>
+            <div class="row px-3">
+              <label class="mb-1">
+                <h6 class="mb-0 text-sm">No Telp</h6>
+              </label>
+              <input class="form-control" type="text" name="telp" placeholder="Enter a valid No Telp" />
             </div>
             <div class="row px-3">
               <label class="mb-1">
                 <h6 class="mb-0 text-sm">Password</h6>
               </label>
-              <input type="password" name="password" placeholder="Enter password" />
+              <input class="form-control" type="password" name="password" placeholder="Enter a password" />
             </div>
             <div class="row px-3">
               <label class="mb-1">
                 <h6 class="mb-0 text-sm">Repeat Password</h6>
               </label>
-              <input type="password" name="password" placeholder="Enter password" />
-            </div>
-            <div class="row px-3 mb-4">
-              <div class="custom-control custom-checkbox custom-control-inline">
-                <!-- <input id="chk1" type="checkbox" name="chk" class="custom-control-input" />
-                <label for="chk1" class="custom-control-label text-sm">Remember me</label> -->
-              </div>
-              <!-- <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a> -->
+              <input class="form-control" type="password" name="password_repeat" placeholder="Enter a password" />
             </div>
             <div class="row mb-3 px-3">
               <button type="submit" class="btn btn-blue text-center">
@@ -237,6 +238,7 @@
                 <a class="text-danger">Login</a></small>
             </div>
           </div>
+          </form>
         </div>
       </div>
       <div class="bg-blue py-4">
@@ -246,8 +248,120 @@
       </div>
     </div>
   </div>
+  <!-- jQuery 2.1.3 -->
+  <script src="<?= base_url(); ?>assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript"></script>
+  <script type="text/javascript">
+    var base_url = '<?= base_url() ?>';
+    $('#form-daftar').on('keyup', 'input[name="email"]', function() {
+      $.ajax({
+        type: "post",
+        url: base_url + "Login/validationDaftarAkun",
+        dataType: "json",
+        data: {
+          'name' : 'email',
+          'email': this.value
+        },
+        success: function(result) {
+          if (result.st == 'salah') {
+            $('input[name="email"]').addClass('is-invalid');
+            $('input[name="email"]').removeClass('is-valid');
+            $('input[name="email"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="email"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="email"]').closest('div').append($('<div class="invalid-feedback">').append($(result.msg)));
+          } else {
+            $('input[name="email"]').addClass('is-valid');
+            $('input[name="email"]').removeClass('is-invalid');
+            $('input[name="email"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="email"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="email"]').closest('div').append($('<div class="valid-feedback">').append('Looks good'));
+          }
+        }
+      });
+    });
+
+    $('#form-daftar').on('keyup', 'input[name="telp"]', function() {
+      $.ajax({
+        type: "post",
+        url: base_url + "Login/validationDaftarAkun",
+        dataType: "json",
+        data: {
+          'name' : 'telp',
+          'telp': this.value
+        },
+        success: function(result) {
+          if (result.st == 'salah') {
+            $('input[name="telp"]').addClass('is-invalid');
+            $('input[name="telp"]').removeClass('is-valid');
+            $('input[name="telp"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="telp"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="telp"]').closest('div').append($('<div class="invalid-feedback">').append($(result.msg)));
+          } else {
+            $('input[name="telp"]').addClass('is-valid');
+            $('input[name="telp"]').removeClass('is-invalid');
+            $('input[name="telp"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="telp"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="telp"]').closest('div').append($('<div class="valid-feedback">').append('Looks good'));
+          }
+        }
+      });
+    });
+
+    $('#form-daftar').on('keyup', 'input[name="password"]', function() {
+      $.ajax({
+        type: "post",
+        url: base_url + "Login/validationDaftarAkun",
+        dataType: "json",
+        data: {
+          'name' : 'password',
+          'password': this.value
+        },
+        success: function(result) {
+          if (result.st == 'salah') {
+            $('input[name="password"]').addClass('is-invalid');
+            $('input[name="password"]').removeClass('is-valid');
+            $('input[name="password"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="password"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="password"]').closest('div').append($('<div class="invalid-feedback">').append($(result.msg)));
+          } else {
+            $('input[name="password"]').addClass('is-valid');
+            $('input[name="password"]').removeClass('is-invalid');
+            $('input[name="password"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="password"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="password"]').closest('div').append($('<div class="valid-feedback">').append('Looks good'));
+          }
+        }
+      });
+    });
+
+    $('#form-daftar').on('keyup', 'input[name="password_repeat"]', function() {
+      $.ajax({
+        type: "post",
+        url: base_url + "Login/validationDaftarAkun",
+        dataType: "json",
+        data: {
+          'name' : 'password_repeat',
+          'password_utama' : $('input[name="password"]').val(),
+          'password_repeat': this.value,
+        },
+        success: function(result) {
+          if (result.st == 'salah') {
+            $('input[name="password_repeat"]').addClass('is-invalid');
+            $('input[name="password_repeat"]').removeClass('is-valid');
+            $('input[name="password_repeat"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="password_repeat"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="password_repeat"]').closest('div').append($('<div class="invalid-feedback">').append($(result.msg)));
+          } else {
+            $('input[name="password_repeat"]').addClass('is-valid');
+            $('input[name="password_repeat"]').removeClass('is-invalid');
+            $('input[name="password_repeat"]').closest('div').find('div.invalid-feedback').remove();
+            $('input[name="password_repeat"]').closest('div').find('div.valid-feedback').remove();
+            $('input[name="password_repeat"]').closest('div').append($('<div class="valid-feedback">').append('Looks good'));
+          }
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
