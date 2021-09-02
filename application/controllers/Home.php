@@ -21,9 +21,12 @@ class Home extends CI_Controller {
 
 	public function masterBarang()
 	{
+		$this->load->model('MasterBarang');
 		$data = array(
+			'data'		=> $this->MasterBarang->getAllDataBarang(),
 			'content'	=> 'master_barang',
 		);
+		
 		$this->load->view('components/main', $data);
 	}
 
