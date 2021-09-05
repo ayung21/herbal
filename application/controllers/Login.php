@@ -25,6 +25,8 @@ class Login extends CI_Controller
 	public function validationDaftarAkun()
 	{
 		$args = $this->input->post();
+		echo json_encode($args['password_utama']);
+		die();
 		$this->load->library('form_validation');
 
 		if (isset($args['email'])) {
