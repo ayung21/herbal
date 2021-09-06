@@ -25,8 +25,6 @@ class Login extends CI_Controller
 	public function validationDaftarAkun()
 	{
 		$args = $this->input->post();
-		echo json_encode($args['password_utama']);
-		die();
 		$this->load->library('form_validation');
 
 		if (isset($args['email'])) {
@@ -46,9 +44,10 @@ class Login extends CI_Controller
 				'required'    => '%s masih kosong',
 			));
 		} else if (isset($args['password_repeat'])) {
-			$this->form_validation->set_rules('password_repeat', 'Password', 'required|matches['.$args['password_utama'].']', array(
-				'required'    => '%s masih kosong',
-				'matches'  	  => '%s tidak sama.',
+			$this->form_validation->set_rules('password_utama', 'password_utama', 'required');
+			$this->form_validation->set_rules('password_repeat', 'Password', 'required|matches[password_utama]', array(
+				'required'   => '%s masih kosong',
+				'matches'    => '%s tidak sama.',
 			));
 		}
 
@@ -65,6 +64,42 @@ class Login extends CI_Controller
 					'st'  => 'benar'
 				)
 			);
+		}
+	}
+
+	public function daftarAkun()
+	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email', array(
+			'required'    => '%s masih kosong',
+			'valid_email' => '%s tidak valid.'
+		));
+		$this->form_validation->set_rules('telp', 'Telp', 'required|min_length[11]|max_length[13]|numeric', array(
+			'required'    => '%s masih kosong',
+			'min_length'  => '%s terlalau pendek.',
+			'max_length'  => '%s terlalau panjang.',
+			'numeric'  	  => '%s tidak sesuai.',
+		));
+		$this->form_validation->set_rules('password', 'Password', 'required', array(
+			'required'    => '%s masih kosong',
+		));
+		$this->form_validation->set_rules('password_repeat', 'Password', 'required|matches[password]', array(
+			'required'   => '%s masih kosong',
+			'matches'    => '%s tidak sama.',
+		));
+
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', 'silahkan ulangi daftar');
+			return redirect('Login/daftar');
+		} else {
+			$this->load->model('MasterUser');
+			$args = $this->input->post();
+
+			$this->MasterUser->insertUser($args);
+
+			return redirect('Login/formDataDiriToko');
 		}
 	}
 }
