@@ -8,7 +8,7 @@ $(document).ready(function () {
 			$("footer.main-footer").css("margin-left", "0");
 			$(this).removeClass("hide-sidebar");
 			$(this).addClass("show-sidebar");
-			console.log("show sidebar");
+			// console.log("show sidebar");
 		} else {
 			$("div.content-wrapper").css("margin-left", "230px");
 			$("aside.main-sidebar").css("left", "0");
@@ -17,7 +17,7 @@ $(document).ready(function () {
 			$("footer.main-footer").css("margin-left", "230px");
 			$(this).removeClass("show-sidebar");
 			$(this).addClass("hide-sidebar");
-			console.log("hide sidebar");
+			// console.log("hide sidebar");
 		}
 	});
 
