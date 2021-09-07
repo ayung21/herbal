@@ -11,8 +11,17 @@ class MasterUser extends CI_Model
         $data = array(
             'email'    => $args['email'],
             'no_hp'    => $args['telp'],
-            'password' => $args['password']
+            'password' => password_hash($args['password'], PASSWORD_DEFAULT)
         );
-        return $this->db->insert($this->table, $data);
+        $this->db->insert($this->table, $data);
+        return $this->db->insert_id();
+    }
+
+    public function getIdToko($id){
+        return $this->db->query("
+            SELECT * 
+            FROM ".$this->table."
+            WHERE id_user = ".$this->db->escape($id)."
+        ")->row();
     }
 }

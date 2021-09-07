@@ -97,7 +97,15 @@ class Login extends CI_Controller
 			$this->load->model('MasterUser');
 			$args = $this->input->post();
 
-			$this->MasterUser->insertUser($args);
+			$insert = $this->MasterUser->insertUser($args);
+			$data   = $this->MasterUser->getIdToko($insert);
+
+			$arr_session = array(
+				'login'	=> TRUE,
+				'data'	=> $data
+			);
+
+			$this->session->set_userdata($arr_session);
 
 			return redirect('Login/formDataDiriToko');
 		}
