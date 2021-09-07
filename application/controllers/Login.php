@@ -16,10 +16,26 @@ class Login extends CI_Controller
 
 	public function formDataDiriToko()
 	{
-		$data = array(
-			'content'	=> 'form_datadiri_toko',
-		);
-		$this->load->view('components/main', $data);
+		// Google Geocoding API Key
+		$apiKey  = 'AIzaSyDlIBXc3vKsxdRWAi6aD_60r9C7E7_d7RI';
+		$address = urlencode( '1600 Amphitheatre Pkwy, Mountain View, CA 94043' );
+		$url     = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
+		// echo "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
+		// print_r($url);
+		// die();
+		$resp    = json_decode( file_get_contents( $url ), true );
+
+		// Latitude and Longitude (PHP 7 syntax)
+		$lat    = $resp['results'][0]['geometry']['location']['lat'] ?? '';
+		$long   = $resp['results'][0]['geometry']['location']['lng'] ?? '';
+		print_r($resp);
+		print_r($long);
+		// echo json_encode(user());
+		// $data = array(
+		// 	'content'	=> 'form_datadiri_toko',
+		// );
+		// $this->load->view('components/main', $data);
+		// $this->load->view('latlot');
 	}
 
 	public function validationDaftarAkun()
