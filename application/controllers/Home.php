@@ -30,6 +30,17 @@ class Home extends CI_Controller {
 		$this->load->view('components/main', $data);
 	}
 
+	public function masterKota()
+	{
+		$this->load->model('MasterKota');
+		$data = array(
+			'data'		=> $this->MasterKota->getAllDataKota(),
+			'content'	=> 'master_kota',
+		);
+		
+		$this->load->view('components/main', $data);
+	}
+
 	public function listBarangToko(){
 		$data = array(
 			'content'	=> 'list_barang_toko',
