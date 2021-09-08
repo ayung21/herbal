@@ -40,4 +40,4 @@
 <!-- <script src="<?= base_url(); ?>assets/dist/js/pages/dashboard.js" type="text/javascript"></script> -->
 
 <!-- AdminLTE for demo purposes -->
-<script src="<?= base_url(); ?>assets/dist/js/demo.js" type="text/javascript"></script>
+<!-- <script src="<?= base_url(); ?>assets/dist/js/demo.js" type="text/javascript"></script> -->
