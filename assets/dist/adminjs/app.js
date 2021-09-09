@@ -40,4 +40,42 @@ $(document).ready(function () {
 		bInfo: true,
 		bAutoWidth: false,
 	});
+
+	$("#example1").on("click", ".delete-kota", function () {
+		var id = $(this).attr("data-id");
+
+		var conf = confirm("yakin ingin menghapus ???");
+
+		if (conf == true) {
+			$.ajax({
+				type: "post",
+				url: base_url + "Home/deleteKota",
+				dataType: "json",
+				data: {
+					id: id,
+				},
+				success: function (result) {
+					location.reload(true);
+				},
+			});
+		}
+	});
+
+	$("#example1").on("click", ".get-data-update-kota", function () {
+		var id = $(this).attr('data-id');
+
+		$.ajax({
+			type: "post",
+			url: base_url + "Home/getDataKota",
+			dataType: "json",
+			data: {
+				id: id,
+			},
+			success: function (result) {
+				$.each(result, function(key, value){
+					$('#form-update-kota').find('input[name='+key+']').val(value);
+				});
+			},
+		});
+	});
 });
