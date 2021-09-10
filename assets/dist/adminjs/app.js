@@ -78,4 +78,42 @@ $(document).ready(function () {
 			},
 		});
 	});
+
+	$("#example1").on("click", ".delete-barang", function () {
+		var id = $(this).attr("data-id");
+
+		var conf = confirm("yakin ingin menghapus ???");
+
+		if (conf == true) {
+			$.ajax({
+				type: "post",
+				url: base_url + "Home/deleteBarang",
+				dataType: "json",
+				data: {
+					id: id,
+				},
+				success: function (result) {
+					location.reload(true);
+				},
+			});
+		}
+	});
+
+	$("#example1").on("click", ".get-data-update-barang", function () {
+		var id = $(this).attr('data-id');
+
+		$.ajax({
+			type: "post",
+			url: base_url + "Home/getDataBarang",
+			dataType: "json",
+			data: {
+				id: id,
+			},
+			success: function (result) {
+				$.each(result, function(key, value){
+					$('#form-update-barang').find('input[name='+key+']').val(value);
+				});
+			},
+		});
+	});
 });
