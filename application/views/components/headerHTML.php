@@ -8,9 +8,9 @@
   <!-- Bootstrap 3.3.2 -->
   <link href="<?= base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <!-- Ionicons 2.0.0 -->
-  <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url('assets/dist/css/ionicons.min.css'); ?>" rel="stylesheet" type="text/css" />
   <!-- FontAwesome 4.3.0 -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url('assets/dist/css/font-awesome-4.3/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
   <!-- Theme style -->
   <!-- <link href="<?= base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
   <link href="<?= base_url(); ?>assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
