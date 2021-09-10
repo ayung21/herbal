@@ -31,6 +31,44 @@ class Home extends CI_Controller
 		$this->load->view('components/main', $data);
 	}
 
+	public function createBarang(){
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('barang', 'Barang', 'is_unique[tbv_barang.nama_barang]', array(
+			'is_unique'    => '%s sudah ada',
+		));
+		
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', form_error('barang'));
+		}else{
+			$this->load->model('MasterBarang');
+			$args = $this->input->post();
+			$this->MasterBarang->prosesCreateBarang($args);
+		}
+		return redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function deleteBarang(){
+		$this->load->model('MasterBarang');
+		$id = $this->input->post('id');
+		$this->MasterBarang->deleteBarang($id);
+		echo json_encode('delete');	
+	}
+
+	public function getDataBarang(){
+		$this->load->model('MasterBarang');
+		$id = $this->input->post('id');
+		$data = $this->MasterBarang->getDataIdBarang($id);
+		echo json_encode($data);
+	}
+
+	public function updateBarang(){
+		$this->load->model('MasterBarang');
+		$args = $this->input->post();
+		$this->MasterBarang->prosesUpdateBarang($args);
+		return redirect($_SERVER['HTTP_REFERER']);
+	}
+
 	public function masterKota()
 	{
 		$this->load->model('MasterKota');
