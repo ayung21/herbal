@@ -18,258 +18,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: green;">&#10003;</span> <i>Verified</i> </td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Toko Duro</td>
-                                <td>Taman</td>
-                                <td><span style="color: red;">&#10005;</span><i>Not Verified</i></td>
-                                <td>
-                                    <button class="btn btn-warning">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
-                                    ||
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php foreach ($data as $row) : ?>
+                                <tr id="data_<?= $row->id_user; ?>">
+                                    <td><?= $row->nama_toko; ?></td>
+                                    <td><?= $row->kota; ?></td>
+                                    <td class="status"><?php switch ($row->status) {
+                                            case '0':
+                                                echo '<span style="color: red;">&#10005;</span><i>Not Verified</i>';
+                                                break;
+
+                                            case '1';
+                                                echo '<span style="color: green;">&#10003;</span> <i>Verified</i>';
+
+                                            default:
+                                                # code...
+                                                break;
+                                        } ?>
+                                    </td>
+                                    <td class="tombol">
+                                    <?php switch ($row->status) {
+                                            case '0':
+                                                echo '<button class="btn btn-success accept-toko" data-id="'.$row->id_user.'"><i class="fa fa-check" aria-hidden="true"></i></button>';
+                                                break;
+
+                                            case '1';
+                                                echo '<button class="btn btn-default" disabled><i class="fa fa-check" aria-hidden="true"></i></button>';
+
+                                            default:
+                                                # code...
+                                                break;
+                                        } ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                         <tfoot>
                             <tr>

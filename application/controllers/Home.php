@@ -31,16 +31,17 @@ class Home extends CI_Controller
 		$this->load->view('components/main', $data);
 	}
 
-	public function createBarang(){
+	public function createBarang()
+	{
 		$this->load->library('form_validation');
-		
+
 		$this->form_validation->set_rules('barang', 'Barang', 'is_unique[tbv_barang.nama_barang]', array(
 			'is_unique'    => '%s sudah ada',
 		));
-		
+
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('error', form_error('barang'));
-		}else{
+		} else {
 			$this->load->model('MasterBarang');
 			$args = $this->input->post();
 			$this->MasterBarang->prosesCreateBarang($args);
@@ -48,21 +49,24 @@ class Home extends CI_Controller
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function deleteBarang(){
+	public function deleteBarang()
+	{
 		$this->load->model('MasterBarang');
 		$id = $this->input->post('id');
 		$this->MasterBarang->deleteBarang($id);
-		echo json_encode('delete');	
+		echo json_encode('delete');
 	}
 
-	public function getDataBarang(){
+	public function getDataBarang()
+	{
 		$this->load->model('MasterBarang');
 		$id = $this->input->post('id');
 		$data = $this->MasterBarang->getDataIdBarang($id);
 		echo json_encode($data);
 	}
 
-	public function updateBarang(){
+	public function updateBarang()
+	{
 		$this->load->model('MasterBarang');
 		$args = $this->input->post();
 		$this->MasterBarang->prosesUpdateBarang($args);
@@ -80,16 +84,17 @@ class Home extends CI_Controller
 		$this->load->view('components/main', $data);
 	}
 
-	public function createKota(){
+	public function createKota()
+	{
 		$this->load->library('form_validation');
-		
+
 		$this->form_validation->set_rules('kota', 'Kota', 'is_unique[tbv_kota.kota]', array(
 			'is_unique'    => '%s sudah ada',
 		));
-		
+
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata('error', form_error('kota'));
-		}else{
+		} else {
 			$this->load->model('MasterKota');
 			$args = $this->input->post();
 			$this->MasterKota->prosesCreateKota($args);
@@ -97,21 +102,24 @@ class Home extends CI_Controller
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function deleteKota(){
+	public function deleteKota()
+	{
 		$this->load->model('MasterKota');
 		$id = $this->input->post('id');
 		$this->MasterKota->deleteKota($id);
 		echo json_encode('delete');
 	}
 
-	public function getDataKota(){
+	public function getDataKota()
+	{
 		$this->load->model('MasterKota');
 		$id = $this->input->post('id');
 		$data = $this->MasterKota->getDataIdKota($id);
 		echo json_encode($data);
 	}
 
-	public function updateKota(){
+	public function updateKota()
+	{
 		$this->load->model('MasterKota');
 		$args = $this->input->post();
 		$this->MasterKota->prosesUpdateKota($args);
@@ -127,9 +135,19 @@ class Home extends CI_Controller
 	}
 	public function listToko()
 	{
+		$this->load->model('MasterUser');
 		$data = array(
+			'data'		=> $this->MasterUser->getAllToko(),
 			'content'	=> 'list_toko',
 		);
 		$this->load->view('components/main', $data);
+	}
+
+	public function validasiToko()
+	{
+		$this->load->model('MasterUser');
+		$id = $this->input->post('id');
+		$this->MasterUser->getValidasiToko($id);
+		echo json_encode($id);
 	}
 }

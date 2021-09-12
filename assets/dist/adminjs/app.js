@@ -41,6 +41,10 @@ $(document).ready(function () {
 		bAutoWidth: false,
 	});
 
+	// =====================================================================================================================================================
+	// 															TOKO
+	// =====================================================================================================================================================
+
 	$("#example1").on("click", ".delete-kota", function () {
 		var id = $(this).attr("data-id");
 
@@ -62,7 +66,7 @@ $(document).ready(function () {
 	});
 
 	$("#example1").on("click", ".get-data-update-kota", function () {
-		var id = $(this).attr('data-id');
+		var id = $(this).attr("data-id");
 
 		$.ajax({
 			type: "post",
@@ -72,12 +76,22 @@ $(document).ready(function () {
 				id: id,
 			},
 			success: function (result) {
-				$.each(result, function(key, value){
-					$('#form-update-kota').find('input[name='+key+']').val(value);
+				$.each(result, function (key, value) {
+					$("#form-update-kota")
+						.find("input[name=" + key + "]")
+						.val(value);
 				});
 			},
 		});
 	});
+
+	// =====================================================================================================================================================
+	// 															END MASTER TOKO
+	// =====================================================================================================================================================
+
+	// =====================================================================================================================================================
+	// 															MASTER BARANG
+	// =====================================================================================================================================================
 
 	$("#example1").on("click", ".delete-barang", function () {
 		var id = $(this).attr("data-id");
@@ -100,7 +114,7 @@ $(document).ready(function () {
 	});
 
 	$("#example1").on("click", ".get-data-update-barang", function () {
-		var id = $(this).attr('data-id');
+		var id = $(this).attr("data-id");
 
 		$.ajax({
 			type: "post",
@@ -110,10 +124,56 @@ $(document).ready(function () {
 				id: id,
 			},
 			success: function (result) {
-				$.each(result, function(key, value){
-					$('#form-update-barang').find('input[name='+key+']').val(value);
+				$.each(result, function (key, value) {
+					$("#form-update-barang")
+						.find("input[name=" + key + "]")
+						.val(value);
 				});
 			},
 		});
 	});
+
+	$("#example1").on("click", ".accept-toko", function () {
+		var id = $(this).attr("data-id");
+
+		var conf = confirm("Validasi Toko ???");
+
+		if (conf == true) {
+			$.ajax({
+				type: "post",
+				url: base_url + "Home/validasiToko",
+				dataType: "json",
+				data: {
+					id: id,
+				},
+				success: function (result) {
+					$("tr#data_" + result)
+						.find("td.status")
+						.children()
+						.remove();
+					$("tr#data_" + result)
+						.find("td.status")
+						.append($('<span style="color: green;">').append("&#10003;"))
+						.append($("<i>").append("Verified"));
+
+					$("tr#data_" + result)
+						.find("td.tombol")
+						.children()
+						.remove();
+
+					$("tr#data_" + result)
+						.find("td.tombol")
+						.append(
+							$('<button class="btn btn-default" disabled>').append(
+								$('<i class="fa fa-check" aria-hidden="true">')
+							)
+						);
+				},
+			});
+		}
+	});
+
+	// =====================================================================================================================================================
+	// 															END MASTER BARANG
+	// =====================================================================================================================================================
 });

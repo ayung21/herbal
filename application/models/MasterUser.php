@@ -4,7 +4,7 @@ class MasterUser extends CI_Model
 {
 
     protected $table = 'tbm_user';
-    // protected $table_view = 'tbv_barang';
+    protected $table_view_toko = 'tbv_toko';
 
     public function insertUser($args)
     {
@@ -17,11 +17,26 @@ class MasterUser extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function getIdToko($id){
+    public function getIdToko($id)
+    {
         return $this->db->query("
             SELECT * 
-            FROM ".$this->table."
-            WHERE id_user = ".$this->db->escape($id)."
+            FROM " . $this->table . "
+            WHERE id_user = " . $this->db->escape($id) . "
         ")->row();
+    }
+
+    public function getAllToko()
+    {
+        return $this->db->get($this->table_view_toko)->result();
+    }
+
+    public function getValidasiToko($id)
+    {
+        $data = array(
+            'status'    => 1
+        );
+        $this->db->where('id_user', $id);
+        return $this->db->update($this->table, $data);
     }
 }
