@@ -4400,7 +4400,9 @@ a.prod_details {
 }
 .avatar-pic {
 	width: 150px;
+	border-radius: 100px;
 }
+
 .input-form-file {
 	position: absolute;
 	top: 0;
@@ -4420,5 +4422,5 @@ a.prod_details {
 	color: #fff;
 	background-color: #59698d !important;
 	margin-left: 27px;
-margin-top: 3px;
+	margin-top: 3px;
 }

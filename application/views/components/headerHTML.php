@@ -11,6 +11,7 @@
   <link href="<?= base_url('assets/dist/css/ionicons.min.css'); ?>" rel="stylesheet" type="text/css" />
   <!-- FontAwesome 4.3.0 -->
   <link href="<?= base_url('assets/dist/css/font-awesome-4.3/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
   <!-- Theme style -->
   <!-- <link href="<?= base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
   <link href="<?= base_url(); ?>assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
