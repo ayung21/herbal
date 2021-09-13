@@ -5,9 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Snippet - BBBootstrap</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="<?= base_url('assets/bootstrap/css/v4.3.1/bootstrap.min.css'); ?>" rel="stylesheet" />
+  <link href="<?= base_url('assets/dist/css/font-awesome.min.css'); ?>" rel="stylesheet" />
   <style>
     body {
       color: #000;
@@ -201,7 +200,9 @@
               <div class="line"></div>
               <small class="or text-center">Login</small>
               <div class="line"></div>
+              <div style="text-align: center;width: 100%;"><p style="color: red;"><?php echo $this->session->flashdata('error'); ?></p></div>
             </div>
+            <?php echo form_open('Login/prosesLogin') ?>
             <div class="row px-3">
               <label class="mb-1">
                 <h6 class="mb-0 text-sm">Email Address</h6>
@@ -219,13 +220,14 @@
                 <!-- <input id="chk1" type="checkbox" name="chk" class="custom-control-input" />
                 <label for="chk1" class="custom-control-label text-sm">Remember me</label> -->
               </div>
-              <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a>
+              <!-- <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a> -->
             </div>
             <div class="row mb-3 px-3">
               <button type="submit" class="btn btn-blue text-center">
                 Login
               </button>
             </div>
+            </form>
             <div class="row mb-4 px-3">
               <small class="font-weight-bold">Don't have an account?
                 <a class="text-danger">Register</a></small>
@@ -240,7 +242,9 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery 2.1.3 -->
+  <script src="<?= base_url(); ?>assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="<?= base_url('assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
   <script type="text/javascript"></script>
 </body>
 

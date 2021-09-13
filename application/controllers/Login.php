@@ -9,6 +9,31 @@ class Login extends CI_Controller
 		$this->load->view('login');
 	}
 
+	public function prosesLogin()
+	{
+		$this->load->model('MasterUser');
+		$args = $this->input->post();
+
+		$cek1 = $this->MasterUser->cekLoginEmail($args);
+
+		if ($cek1->num_rows() > 0) {
+			if (password_verify($args['password'], $cek1->row()->password)) {
+				$arr_session = array(
+					'login'	=> TRUE,
+					'data'	=> $cek1->row()
+				);
+				$this->session->set_userdata($arr_session);
+				return redirect('Home');
+			} else {
+				$this->session->set_flashdata('error', 'email atau password salah');
+				return redirect($_SERVER['HTTP_REFERER']);
+			}
+		} else {
+			$this->session->set_flashdata('error', 'email atau password salah');
+			return redirect($_SERVER['HTTP_REFERER']);
+		}
+	}
+
 	public function daftar()
 	{
 		$this->load->view('daftar');
@@ -110,5 +135,9 @@ class Login extends CI_Controller
 
 			return redirect('Login/formDataDiriToko');
 		}
+	}
+
+	public function uploadImageTemp(){
+		
 	}
 }

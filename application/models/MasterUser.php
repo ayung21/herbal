@@ -39,4 +39,12 @@ class MasterUser extends CI_Model
         $this->db->where('id_user', $id);
         return $this->db->update($this->table, $data);
     }
+
+    public function cekLoginEmail($args){
+        return $this->db->query("
+            SELECT * 
+            FROM ".$this->table."
+            WHERE email = ".$this->db->escape($args['email'])."
+        ");
+    }
 }
