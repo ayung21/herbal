@@ -128,7 +128,9 @@ class Home extends CI_Controller
 
 	public function listBarangToko()
 	{
+		$this->load->model('Transaksi');
 		$data = array(
+			'data'		=> $this->Transaksi->getDataToko(),
 			'content'	=> 'list_barang_toko',
 		);
 		$this->load->view('components/main', $data);
