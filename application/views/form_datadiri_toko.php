@@ -9,7 +9,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <?php echo form_open_multipart('Login/prosesInputDatadiri', 'id="form-datadiri"') ?>
                     <div class="box-body">
                         <div class="file-field">
                             <div class="mb-4">
