@@ -181,10 +181,10 @@ $(document).ready(function () {
 	// 															FORM DAFTAR DATADIRI
 	// =====================================================================================================================================================
 
-	$('form-datadiri').on('change','input:file', function(){
+	$('#form-datadiri').on('change','input:file', function(){
 		var file_data = $(this).prop('files')[0];
         var form_data = new FormData();
-        form_data.append('upload', file_data);
+        form_data.append('images', file_data);
 		$.ajax({
 			url: base_url+'Login/uploadImageTemp', // point to server-side PHP script 
 			dataType: 'text', // what to expect back from the PHP script, if anything
@@ -194,12 +194,17 @@ $(document).ready(function () {
 			data: form_data,
 			type: 'post',
 			success: function(result) {
-				var coba = result;
-				var coba2 = coba.replace('"', '');
-				$('input:file').val('');
-				$('.image-' + id).attr('src', 'data:image/png;base64,' + coba2);
-				$('img.loading-image-' + id).hide();
-				$('img.image-' + id).show();
+				// $.each(result, function(key, value){
+					console.log($.type(result));
+					console.log(result);
+				// });
+				// var coba = result;
+				// var coba2 = coba.replace('"', '');
+				// $('input:file').val('');
+				$('img.avatar-pic').attr('src', 'data:image/png;base64,' + result);
+				// $('img.avatar-pic').attr('src', 'data:image/png;base64,' + btoa(result));
+				// $('img.loading-image-' + id).hide();
+				// $('img.image-' + id).show();
 			}
 		});
 	});

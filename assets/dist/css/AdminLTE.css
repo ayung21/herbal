@@ -4406,6 +4406,14 @@ a.prod_details {
 	display: block;
 }
 
+.avatar-pic2 {
+	width: 443px;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
 .input-form-file {
 	position: absolute;
 	top: 0;

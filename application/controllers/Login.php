@@ -137,7 +137,26 @@ class Login extends CI_Controller
 		}
 	}
 
-	public function uploadImageTemp(){
-		
+	public function tester(){
+		// $this->load->view('tester');
+		// print_r(FCPATH);
+		copy(FCPATH.'/uploads/temp/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png', FCPATH.'/uploads/img/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png');
+	}
+
+	public function uploadImageTemp()
+	{
+		$config['upload_path']          = './uploads/temp/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['file_name']			= 'temp'.random_string('alnum', 16).'-'.date('Y-m-d H:i:s');
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('images')) {
+			echo json_encode('gagal');
+		} else {
+			$data = $this->upload->data();
+			echo json_encode(substr(base64_encode(file_get_contents($data['full_path'])),1,-1));
+			// print_r(base64_encode(file_get_contents($data['full_path'])));
+		}
 	}
 }

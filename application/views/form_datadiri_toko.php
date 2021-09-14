@@ -14,6 +14,8 @@
                         <div class="file-field">
                             <div class="mb-4">
                                 <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
+                                <input type="hidden" name="file_asli">
+                                <input type="hidden" name="file_temp">
                             </div>
                             <div class="d-flex justify-content-center">
                                 <div class="btn btn-mdb-color btn-rounded float-left">
