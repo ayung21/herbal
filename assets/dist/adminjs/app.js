@@ -31,6 +31,10 @@ $(document).ready(function () {
 
 	$("#toggle-menu").css("display", "block");
 
+	$('.select2-basic').select2({
+		'width' : '1248px',
+	});
+
 	$("#example1").dataTable();
 	$("#example2").dataTable({
 		bPaginate: true,
@@ -182,29 +186,22 @@ $(document).ready(function () {
 	// =====================================================================================================================================================
 
 	$('#form-datadiri').on('change','input:file', function(){
-		var file_data = $(this).prop('files')[0];
-        var form_data = new FormData();
+		var file_data = $(this).prop('files')[0],
+			temp 	  = $('input[name="file_temp"]').val(),
+        	form_data = new FormData();
         form_data.append('images', file_data);
+		form_data.append('temp', temp);
 		$.ajax({
-			url: base_url+'Login/uploadImageTemp', // point to server-side PHP script 
-			dataType: 'text', // what to expect back from the PHP script, if anything
+			url: base_url+'Login/uploadImageTemp',
+			dataType: 'json',
 			cache: false,
 			contentType: false,
 			processData: false,
 			data: form_data,
 			type: 'post',
 			success: function(result) {
-				// $.each(result, function(key, value){
-					console.log($.type(result));
-					console.log(result);
-				// });
-				// var coba = result;
-				// var coba2 = coba.replace('"', '');
-				// $('input:file').val('');
-				$('img.avatar-pic').attr('src', 'data:image/png;base64,' + result);
-				// $('img.avatar-pic').attr('src', 'data:image/png;base64,' + btoa(result));
-				// $('img.loading-image-' + id).hide();
-				// $('img.image-' + id).show();
+				$('img.avatar-pic').attr('src', base_url+'uploads/temp/'+result.img);
+				$('input[name="file_temp"]').val(result.img);
 			}
 		});
 	});
