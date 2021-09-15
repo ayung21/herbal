@@ -33,6 +33,8 @@
 <script src="<?= base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <!-- FastClick -->
 <script src="<?= base_url(); ?>assets/plugins/fastclick/fastclick.min.js"></script>
+<!-- select2 -->
+<script src="<?= base_url(); ?>assets/dist/js/select2.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>assets/dist/js/app.min.js" type="text/javascript"></script>
 <script src="<?= base_url('assets/dist/adminjs/app.js'); ?>" type="text/javascript"></script>
