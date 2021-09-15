@@ -13,8 +13,8 @@
                     <div class="box-body">
                         <div class="file-field">
                             <div class="mb-4">
-                                <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic" alt="Photo">
-                                <input type="hidden" name="file_asli">
+                                <img src="<?php if(empty(user()->image_name)){ ?> https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg <?php }else{ echo base_url('/uploads/img/'.user()->image_name);} ?>" class="rounded-circle z-depth-1-half avatar-pic" alt="Photo">
+                                <input type="hidden" name="file_asli" value="<?= user()->image_name ?>">
                                 <input type="hidden" name="file_temp">
                             </div>
                             <div class="d-flex justify-content-center">
@@ -30,11 +30,11 @@
                         </div>
                         <div class="form-group">
                             <label >Alamat</label>
-                            <input type="text" class="form-control" name="alamat" placeholder="alamat" value="<?= user()->alamat ?>" />
+                            <input type="text" class="form-control" name="alamat" placeholder="alamat" value="<?= user()->alamat ?>" required/>
                         </div>
                         <div class="form-group">
                             <label >Kab / Kota</label>
-                            <select name="kota" class="form-control select2-basic">
+                            <select name="kota" class="form-control select2-basic" required>
                                 <option value=""></option>
                                 <?php foreach(kota() as $row): ?>
                                 <option <?php if(user()->fk_kota == $row->id_kota){echo "selected";} ?> value="<?= $row->id_kota ?>"><?= $row->kota ?></option>
@@ -43,13 +43,11 @@
                         </div>
                         <div class="form-group">
                             <label >Email</label>
-                            <input type="text" class="form-control" value="<?= user()->email ?>" disabled/>
-                            <input type="hidden" value="<?= user()->email ?>" name="email"/>
+                            <input type="text" class="form-control" value="<?= user()->email ?>" name="email" required/>
                         </div>
                         <div class="form-group">
                             <label >No Handphone</label>
-                            <input type="text" class="form-control" value="<?= user()->no_hp ?>" disabled/>
-                            <input type="hidden" value="<?= user()->no_hp ?>" name="handphone"/>
+                            <input type="text" class="form-control" value="<?= user()->no_hp ?>" name="handphone" required/>
                         </div>
                     </div>
                     <!-- /.box-body -->

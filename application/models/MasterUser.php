@@ -22,7 +22,9 @@ class MasterUser extends CI_Model
         return $this->db->query("
             SELECT * 
             FROM " . $this->table . "
+            LEFT JOIN tbm_image img ON(img.fk_user = ".$this->table.".id_user)
             WHERE id_user = " . $this->db->escape($id) . "
+            AND img.fk_transaksi is NULL
         ")->row();
     }
 
@@ -46,5 +48,17 @@ class MasterUser extends CI_Model
             FROM ".$this->table."
             WHERE email = ".$this->db->escape($args['email'])."
         ");
+    }
+
+    public function updateDataToko($args){
+        $data = array(
+            'nama_toko' => $args['toko'],
+            'alamat'    => $args['alamat'],
+            'fk_kota'   => $args['kota'],
+            'email'     => $args['email'],
+            'no_hp'     => $args['handphone']
+        );
+        $this->db->where('id_user', user()->id_user);
+        return $this->db->update($this->table, $data);
     }
 }

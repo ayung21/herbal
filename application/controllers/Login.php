@@ -45,7 +45,15 @@ class Login extends CI_Controller
 			'content'	=> 'form_datadiri_toko',
 		);
 		$this->load->view('components/main', $data);
-		$this->load->view('latlot');
+		// $this->load->view('latlot');
+	}
+
+	public function updateDataDiriToko()
+	{
+		$data = array(
+			'content'	=> 'update_datadiri_toko',
+		);
+		$this->load->view('components/main', $data);
 	}
 
 	public function validationDaftarAkun()
@@ -137,17 +145,30 @@ class Login extends CI_Controller
 		}
 	}
 
-	public function tester(){
+	public function tester()
+	{
+		// $this->load->model('MasterKota');
+		// print_r($this->MasterKota->getAllDataKota());
 		// $this->load->view('tester');
 		// print_r(FCPATH);
-		copy(FCPATH.'/uploads/temp/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png', FCPATH.'/uploads/img/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png');
+		// copy(FCPATH . '/uploads/temp/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png', FCPATH . '/uploads/img/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png');
+		// copy('./uploads/temp/tempAKPCdr8sZVcg5GTq-2021-09-15_10:09:13.png', './uploads/img/tempAKPCdr8sZVcg5GTq-2021-09-15_10:09:13.png');
+		// print_r(kota());
+		// foreach(kota() as $row):
+		// 	print_r($row->id_kota);
+		// endforeach;
 	}
 
 	public function uploadImageTemp()
 	{
+		$temp = $this->input->post('temp');
+		if(!empty($temp)){
+			unlink('./uploads/temp/'.$temp);
+		}
+
 		$config['upload_path']          = './uploads/temp/';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['file_name']			= 'temp'.random_string('alnum', 16).'-'.date('Y-m-d H:i:s');
+		$config['allowed_types']        = 'gif|jpg|png|jpeg';
+		$config['file_name']			= 'temp' . random_string('alnum', 16) . '-' . date('Y-m-d H:i:s');
 
 		$this->load->library('upload', $config);
 
@@ -155,8 +176,26 @@ class Login extends CI_Controller
 			echo json_encode('gagal');
 		} else {
 			$data = $this->upload->data();
-			echo json_encode(substr(base64_encode(file_get_contents($data['full_path'])),1,-1));
-			// print_r(base64_encode(file_get_contents($data['full_path'])));
+			echo json_encode(
+				array(
+					'img' => $data['file_name']
+				)
+			);
 		}
+	}
+
+	public function prosesInputDatadiri(){
+		$this->load->model(['MasterUser','MasterImage']);
+		$args = $this->input->post();
+		print_r($args['file_asli']);
+		die();
+		$this->MasterImage->insertImage($args);
+		$this->MasterUser->updateDataToko($args);
+		$data = $this->MasterUser->getIdToko(user()->id_user);
+		$this->session->unset_userdata('data');
+		$this->session->set_userdata('data', $data);
+		copy('./uploads/temp/'.$args['file_temp'], './uploads/img/'.$args['file_temp']);
+		unlink('./uploads/temp/'.$args['file_temp']);
+		return redirect('Home');
 	}
 }
