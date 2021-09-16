@@ -6,6 +6,10 @@ class Transaksi extends CI_Model
     protected $table = 'tbt_transkasi';
     protected $table_view = 'tbv_transaksi';
 
+    public function getAllDataToko(){
+        return $this->db->get($this->table_view)->result();
+    }
+
     public function getDataToko(){
         return $this->db->query("
             SELECT *
