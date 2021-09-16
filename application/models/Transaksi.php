@@ -45,4 +45,13 @@ class Transaksi extends CI_Model
         return $this->db->update($this->table, $data);
         
     }
+
+    public function prosesDeleteDataToko($id){
+        $data = array(
+            'deleted_by'    => user()->id_user,
+            'date_deleted'  => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id_transaksi', $id);
+        return $this->db->update($this->table, $data);
+    }
 }

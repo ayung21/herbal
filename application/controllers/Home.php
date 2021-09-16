@@ -194,4 +194,11 @@ class Home extends CI_Controller
 
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
+
+	public function deleteDataToko(){
+		$this->load->model(['Transaksi']);
+		$id = $this->input->post('id');
+		$this->Transaksi->prosesDeleteDataToko($id);
+		echo json_encode('sukses');
+	}
 }

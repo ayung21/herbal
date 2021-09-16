@@ -255,4 +255,25 @@ $(document).ready(function () {
 		});
 	});
 
+	$("#example1").on("click", ".delete-data-barang-toko", function () {
+		var id = $(this).attr("data-id"),
+			conf = confirm('yakin menghapus data ???');
+
+		if (conf == true) {
+			$.ajax({
+				type: "post",
+				url: base_url + "Home/deleteDataToko",
+				dataType: "json",
+				data: {
+					id: id,
+				},
+				success: function (result) {
+					window.location.reload(true);
+				},
+			});
+		}
+	});
+	// =====================================================================================================================================================
+	// 															END LIST BARANG TOKO
+	// =====================================================================================================================================================
 });
