@@ -4429,6 +4429,22 @@ a.prod_details {
 	opacity: 0;
 	text-transform: uppercase;
 }
+
+.input-form-file2 {
+	position: absolute;
+	/* margin-top: -24px; */
+	right: 0;
+	bottom: 250px;
+	left: 0;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	text-transform: uppercase;
+}
+
 .btn-mdb-color {
 	border-radius: 10em;
 	color: #fff;

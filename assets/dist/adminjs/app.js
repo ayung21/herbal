@@ -32,7 +32,11 @@ $(document).ready(function () {
 	$("#toggle-menu").css("display", "block");
 
 	$('.select2-basic').select2({
-		'width' : '1248px',
+		'width': '1248px',
+	});
+
+	$('.select2-basic2').select2({
+		'width': '548px',
 	});
 
 	$("#example1").dataTable();
@@ -185,22 +189,22 @@ $(document).ready(function () {
 	// 															FORM DAFTAR DATADIRI
 	// =====================================================================================================================================================
 
-	$('#form-datadiri').on('change','input:file', function(){
+	$('#form-datadiri').on('change', 'input:file', function () {
 		var file_data = $(this).prop('files')[0],
-			temp 	  = $('input[name="file_temp"]').val(),
-        	form_data = new FormData();
-        form_data.append('images', file_data);
+			temp = $('input[name="file_temp"]').val(),
+			form_data = new FormData();
+		form_data.append('images', file_data);
 		form_data.append('temp', temp);
 		$.ajax({
-			url: base_url+'Login/uploadImageTemp',
+			url: base_url + 'Login/uploadImageTemp',
 			dataType: 'json',
 			cache: false,
 			contentType: false,
 			processData: false,
 			data: form_data,
 			type: 'post',
-			success: function(result) {
-				$('img.avatar-pic').attr('src', base_url+'uploads/temp/'+result.img);
+			success: function (result) {
+				$('img.avatar-pic').attr('src', base_url + 'uploads/temp/' + result.img);
 				$('input[name="file_temp"]').val(result.img);
 			}
 		});
@@ -209,6 +213,30 @@ $(document).ready(function () {
 	// =====================================================================================================================================================
 	// 															END FORM DAFTAR DATADIRI
 	// =====================================================================================================================================================
+
+	// =====================================================================================================================================================
+	// 															LIST BARANG TOKO
+	// =====================================================================================================================================================
+	$('#form-create-barang-toko').on('change', 'input:file', function () {
+		var file_data = $(this).prop('files')[0],
+			temp = $('input[name="file_temp"]').val(),
+			form_data = new FormData();
+		form_data.append('images', file_data);
+		form_data.append('temp', temp);
+		$.ajax({
+			url: base_url + 'Login/uploadImageTemp',
+			dataType: 'json',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data: form_data,
+			type: 'post',
+			success: function (result) {
+				$('img.avatar-pic2').attr('src', base_url + 'uploads/temp/' + result.img);
+				$('input[name="file_temp"]').val(result.img);
+			}
+		});
+	});
 
 	$('#form-update-barang-toko').on('change', 'input:file', function () {
 		var file_data = $(this).prop('files')[0],

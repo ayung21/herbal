@@ -24,4 +24,11 @@ if (!function_exists('user')) {
         $data = $ci->MasterKota->getAllDataKota();
         return $data;
     }
+
+    function barang(){
+        $ci = &get_instance();
+        $ci->load->model('MasterBarang');
+        $data = $ci->MasterBarang->getAllDataBarang();
+        return $data;
+    }
 }
