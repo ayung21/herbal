@@ -1,8 +1,18 @@
 <section class="content">
     <row>
         <div class="center_content">
+            <?php foreach ($data as $row) : ?>
+                <div class="prod_box">
+                    <div class="center_prod_box">
+                        <div class="product_title"><a href="#"><?= $row->nama_barang ?></a></div>
+                        <div class="product_img"><a href="#"><img class="img_barang_herbal" src="<?= !empty($row->image_name) ? base_url('uploads/img/'.$row->image_name) : 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg'; ?>" alt="" border="0" height="215px" /></a></div>
+                        <div class="prod_price"><span class="reduce"></span> <span class="price">Rp <?= $row->harga ?></span></div>
+                    </div>
+                    <div class="prod_details_tab"> <a href="#" class="prod_buy">Add to Cart</a> <a href="#" class="prod_details">Details</a> </div>
+                </div>
+            <?php endforeach; ?>
             <!-- <div class="center_title_bar">Latest Products</div> -->
-            <div class="prod_box">
+            <!-- <div class="prod_box">
                 <div class="center_prod_box">
                     <div class="product_title"><a href="#">Makita 156 MX-VL</a></div>
                     <div class="product_img"><a href="#"><img class="img_barang_herbal" src="<?= base_url(); ?>assets/dist/img/p1.jpg" alt="" border="0" /></a></div>
@@ -49,7 +59,7 @@
                     <div class="prod_price"><span class="reduce"></span> <span class="price">Rp 120.000</span></div>
                 </div>
                 <div class="prod_details_tab"> <a href="#" class="prod_buy">Add to Cart</a> <a href="#" class="prod_details">Details</a> </div>
-            </div>
+            </div> -->
         </div>
     </row>
 </section>

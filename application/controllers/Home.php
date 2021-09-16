@@ -6,7 +6,9 @@ class Home extends CI_Controller
 
 	public function index()
 	{
+		$this->load->model('Transaksi');
 		$data = array(
+			'data'		=> $this->Transaksi->getAllDataToko(),
 			'content'	=> 'penjualan',
 		);
 		$this->load->view('components/main', $data);
