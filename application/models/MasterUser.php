@@ -46,7 +46,9 @@ class MasterUser extends CI_Model
         return $this->db->query("
             SELECT * 
             FROM ".$this->table."
+            LEFT JOIN tbm_image img ON(img.fk_user = ".$this->table.".id_user)
             WHERE email = ".$this->db->escape($args['email'])."
+            AND img.fk_transaksi is NULL
         ");
     }
 

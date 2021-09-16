@@ -162,8 +162,8 @@ class Login extends CI_Controller
 	public function uploadImageTemp()
 	{
 		$temp = $this->input->post('temp');
-		if(!empty($temp)){
-			unlink('./uploads/temp/'.$temp);
+		if (!empty($temp)) {
+			unlink('./uploads/temp/' . $temp);
 		}
 
 		$config['upload_path']          = './uploads/temp/';
@@ -184,18 +184,21 @@ class Login extends CI_Controller
 		}
 	}
 
-	public function prosesInputDatadiri(){
-		$this->load->model(['MasterUser','MasterImage']);
+	public function prosesInputDatadiri()
+	{
+		$this->load->model(['MasterUser', 'MasterImage']);
 		$args = $this->input->post();
-		print_r($args['file_asli']);
-		die();
-		$this->MasterImage->insertImage($args);
+		// update image
+		if (!empty($args['file_temp'])) :
+			unlink('./uploads/img/' . $args['file_asli']);
+			$this->MasterImage->insertImage($args);
+			copy('./uploads/temp/' . $args['file_temp'], './uploads/img/' . $args['file_temp']);
+			unlink('./uploads/temp/' . $args['file_temp']);
+		endif;
 		$this->MasterUser->updateDataToko($args);
 		$data = $this->MasterUser->getIdToko(user()->id_user);
 		$this->session->unset_userdata('data');
 		$this->session->set_userdata('data', $data);
-		copy('./uploads/temp/'.$args['file_temp'], './uploads/img/'.$args['file_temp']);
-		unlink('./uploads/temp/'.$args['file_temp']);
 		return redirect('Home');
 	}
 }
