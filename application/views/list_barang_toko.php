@@ -7,7 +7,7 @@
                 <div class="box-header">
                     <h3 class="box-title">List Barang Toko</h3>
                     <div class="pull-right box-tools">
-                        <button class="btn btn-info btn-sm" title="Remove" data-toggle="modal" data-target="#myModal">Tambah Kota</button>
+                        <button class="btn btn-info btn-sm" title="create" data-toggle="modal" data-target="#myModal">Tambah Barang</button>
                     </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -25,11 +25,11 @@
                                     <td><?= $row->nama_barang; ?></td>
                                     <td>Rp <?php echo number_format($row->harga, 0, ',', '.') ?></td>
                                     <td>
-                                        <button class="btn btn-warning">
+                                        <button class="btn btn-warning get-data-barang-toko" data-toggle="modal" data-target="#myModalUpdate" data-id="<?= $row->id_transaksi ?>">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                         </button>
                                         ||
-                                        <button class="btn btn-danger">
+                                        <button class="btn btn-danger delete-data-barang-toko" data-id="<?= $row->id_transaksi ?>">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -50,10 +50,10 @@
 </section><!-- /.content -->
 
 <!-- Modal -->
-<div class="" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <?php echo form_open('Home/createBarang') ?>
+            <?php echo form_open_multipart('Home/prosesCreateBarangToko', 'id="form-create-barang-toko"') ?>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create Barang</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -69,11 +69,39 @@
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-mdb-color btn-rounded float-left">
                                 <span>Add photo</span>
-                                <input type="file" class="input-form-file">
+                                <input type="file" class="input-form-file2">
+                                <input type="hidden" name="file_temp">
                             </div>
                         </div>
                     </div>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>Nama Barang</label>
+                        <select name="barang" class="form-control select2-basic2" required>
+                            <option value=""></option>
+                            <?php foreach (barang() as $row) : ?>
+                                <option value="<?= $row->id_barang ?>"><?= $row->nama_barang ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <div class="form-group">
+                        <label>Harga</label>
+                        <input type="number" name="harga" class="form-control" placeholder="Harga" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Diskon</label>
+                        <input type="number" name="diskon" class="form-control" placeholder="diskon" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
                         <label>Nama Barang</label>
                         <input type="text" name="Harga" class="form-control" placeholder="Harga" required />
                     </div>

@@ -137,6 +137,7 @@ class Home extends CI_Controller
 		);
 		$this->load->view('components/main', $data);
 	}
+
 	public function listToko()
 	{
 		$this->load->model('MasterUser');
@@ -153,5 +154,19 @@ class Home extends CI_Controller
 		$id = $this->input->post('id');
 		$this->MasterUser->getValidasiToko($id);
 		echo json_encode($id);
+	}
+
+	public function prosesCreateBarangToko()
+	{
+		$this->load->model(['MasterImage', 'Transaksi']);
+		$args = $this->input->post();
+
+		$insert = $this->Transaksi->insertBarangToko($args);
+
+		copy('./uploads/temp/' . $args['file_temp'], './uploads/img/' . $args['file_temp']);
+		unlink('./uploads/temp/' . $args['file_temp']);
+		$this->MasterImage->insertImageBarangToko($args, $insert);
+
+		return redirect($_SERVER['HTTP_REFERER']);
 	}
 }

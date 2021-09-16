@@ -20,4 +20,13 @@ class MasterImage extends CI_Model
         );
         return $this->db->insert($this->table, $data);
     }
+
+    public function insertImageBarangToko($args, $id){
+        $data = array(
+            'image_name'    => $args['file_temp'],
+            'fk_transaksi'  => $id,
+            'fk_user'       => null
+        );
+        return $this->db->insert($this->table, $data);
+    }
 }
