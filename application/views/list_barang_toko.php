@@ -102,16 +102,49 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <?php echo form_open_multipart('Home/prosesUpdateBarangToko', 'id="form-update-barang-toko"') ?>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="box-body">
+                    <div class="file-field">
+                        <div class="mb-4">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic2" alt="example placeholder avatar">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="btn btn-mdb-color btn-rounded float-left">
+                                <span>Add photo</span>
+                                <input type="file" class="input-form-file2">
+                                <input type="hidden" name="file_asli">
+                                <input type="hidden" name="file_temp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 10px;">
                         <label>Nama Barang</label>
-                        <input type="text" name="Harga" class="form-control" placeholder="Harga" required />
+                        <input type="hidden" name="id_transaksi">
+                        <select name="barang" class="form-control select2-basic2" required>
+                            <option value=""></option>
+                            <?php foreach (barang() as $row) : ?>
+                                <option value="<?= $row->id_barang ?>"><?= $row->nama_barang ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Harga</label>
-                        <input type="text" name="Harga" class="form-control" placeholder="Harga" required />
+                        <input type="number" name="harga" class="form-control" placeholder="Harga" required />
                     </div>
                     <div class="form-group">
                         <label>Diskon</label>
-                        <input type="text" name="Harga" class="form-control" placeholder="Harga" required />
+                        <input type="number" name="diskon" class="form-control" placeholder="diskon" />
                     </div>
                 </div>
             </div>

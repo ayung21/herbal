@@ -24,4 +24,25 @@ class Transaksi extends CI_Model
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
+
+    public function prosesGetTransaksi($id){
+        return $this->db->query("
+            select tt.*,ti.image_name 
+            from ".$this->table." tt 
+            left join tbm_image ti ON(ti.fk_transaksi = tt.id_transaksi)
+            WHERE tt.id_transaksi = ".$this->db->escape($id)."
+            and ti.fk_user is NULL
+        ")->row();
+    }
+
+    public function updateBarangToko($args){
+        $data = array(
+            'fk_barang' => $args['barang'],
+            'harga'     => $args['harga'],
+            'diskon'    => !empty($args['diskon']) ? $args['diskon'] : null
+        );
+        $this->db->where('id_transaksi', $args['id_transaksi']);
+        return $this->db->update($this->table, $data);
+        
+    }
 }

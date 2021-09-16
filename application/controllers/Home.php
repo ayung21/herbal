@@ -169,4 +169,29 @@ class Home extends CI_Controller
 
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
+
+	public function getDataToko()
+	{
+		$this->load->model(['Transaksi']);
+		$id = $this->input->post('id');
+		$data = $this->Transaksi->prosesGetTransaksi($id);
+		echo json_encode($data);
+	}
+
+	public function prosesUpdateBarangToko()
+	{
+		$this->load->model(['MasterImage', 'Transaksi']);
+		$args = $this->input->post();
+
+		$this->Transaksi->updateBarangToko($args);
+
+		if (!empty($args['file_temp'])) :
+			copy('./uploads/temp/' . $args['file_temp'], './uploads/img/' . $args['file_temp']);
+			unlink('./uploads/temp/' . $args['file_temp']);
+			unlink('./uploads/img/' . $args['file_asli']);
+			$this->MasterImage->updateImageBarangToko($args);
+		endif;
+
+		return redirect($_SERVER['HTTP_REFERER']);
+	}
 }

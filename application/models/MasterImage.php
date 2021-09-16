@@ -29,4 +29,18 @@ class MasterImage extends CI_Model
         );
         return $this->db->insert($this->table, $data);
     }
+
+    public function updateImageBarangToko($args){
+        if(!empty($args['file_asli'])){
+            $this->db->where('image_name', $args['file_asli']);
+            $this->db->delete($this->table);
+        }
+
+        $data = array(
+            'image_name'    => $args['file_temp'],
+            'fk_transaksi'  => $args['id_transaksi'],
+            'fk_user'       => null
+        );
+        return $this->db->insert($this->table, $data);
+    }
 }

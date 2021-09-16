@@ -209,4 +209,50 @@ $(document).ready(function () {
 	// =====================================================================================================================================================
 	// 															END FORM DAFTAR DATADIRI
 	// =====================================================================================================================================================
+
+	$('#form-update-barang-toko').on('change', 'input:file', function () {
+		var file_data = $(this).prop('files')[0],
+			temp = $('input[name="file_temp"]').val(),
+			form_data = new FormData();
+		form_data.append('images', file_data);
+		form_data.append('temp', temp);
+		$.ajax({
+			url: base_url + 'Login/uploadImageTemp',
+			dataType: 'json',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data: form_data,
+			type: 'post',
+			success: function (result) {
+				$('img.avatar-pic2').attr('src', base_url + 'uploads/temp/' + result.img);
+				$('input[name="file_temp"]').val(result.img);
+			}
+		});
+	});
+
+	$("#example1").on("click", ".get-data-barang-toko", function () {
+		var id = $(this).attr("data-id");
+
+		$.ajax({
+			type: "post",
+			url: base_url + "Home/getDataToko",
+			dataType: "json",
+			data: {
+				id: id,
+			},
+			success: function (result) {
+				$('#form-update-barang-toko').find('img.avatar-pic2').attr('src', base_url + 'uploads/img/' + result.image_name);
+				$("#form-update-barang-toko").find('select[name="barang"]').val(result.fk_barang);
+				$("#form-update-barang-toko").find('input[name="file_asli"]').val(result.image_name);
+
+				$.each(result, function (key, value) {
+					$("#form-update-barang-toko")
+						.find("input[name=" + key + "]")
+						.val(value);
+				});
+			},
+		});
+	});
+
 });
