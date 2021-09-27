@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.35, for Linux (x86_64)
 --
 -- Host: localhost    Database: herbal
 -- ------------------------------------------------------
--- Server version	8.0.26-0ubuntu0.20.04.2
+-- Server version	5.7.35-0ubuntu0.18.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,13 +21,13 @@
 
 DROP TABLE IF EXISTS `tbm_barang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbm_barang` (
-  `id_barang` int NOT NULL AUTO_INCREMENT,
+  `id_barang` int(11) NOT NULL AUTO_INCREMENT,
   `nama_barang` varchar(100) DEFAULT NULL,
-  `created_by` int DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
   `date_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `deleted_by` int DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id_barang`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -49,11 +49,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbm_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbm_image` (
   `image_name` varchar(100) DEFAULT NULL,
-  `fk_transaksi` int DEFAULT NULL,
-  `fk_user` int DEFAULT NULL
+  `fk_transaksi` int(11) DEFAULT NULL,
+  `fk_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -73,13 +73,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbm_kota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbm_kota` (
-  `id_kota` int NOT NULL AUTO_INCREMENT,
+  `id_kota` int(11) NOT NULL AUTO_INCREMENT,
   `kota` varchar(100) DEFAULT NULL,
-  `created_by` int DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
   `date_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `deleted_by` int DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id_kota`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -101,16 +101,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbm_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbm_user` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) DEFAULT NULL,
   `password` text,
   `nama_toko` varchar(100) DEFAULT NULL,
   `alamat` text,
-  `fk_kota` int DEFAULT NULL,
+  `fk_kota` int(11) DEFAULT NULL,
   `no_hp` char(13) DEFAULT NULL,
-  `status` int DEFAULT '0' COMMENT '0 = not verified\n1 = verified',
+  `status` int(11) DEFAULT '0' COMMENT '0 = not verified\n1 = verified',
   `access` char(10) DEFAULT NULL COMMENT 'admin\nuser',
   `longitude` varchar(100) DEFAULT NULL,
   `langitude` varchar(100) DEFAULT NULL,
@@ -134,15 +134,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tbt_transkasi`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tbt_transkasi` (
-  `id_transaksi` int NOT NULL AUTO_INCREMENT,
-  `fk_user` int DEFAULT NULL,
-  `fk_barang` int DEFAULT NULL,
+  `id_transaksi` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_user` int(11) DEFAULT NULL,
+  `fk_barang` int(11) DEFAULT NULL,
   `harga` double DEFAULT NULL,
   `diskon` double DEFAULT NULL,
   `date_created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `deleted_by` int DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
   `date_deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id_transaksi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -159,39 +159,39 @@ INSERT INTO `tbt_transkasi` VALUES (1,1,1,10000,NULL,'2021-09-13 23:05:56',1,'20
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `tbv_barang`
+-- Temporary table structure for view `tbv_barang`
 --
 
 DROP TABLE IF EXISTS `tbv_barang`;
 /*!50001 DROP VIEW IF EXISTS `tbv_barang`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `tbv_barang` AS SELECT 
  1 AS `id_barang`,
  1 AS `nama_barang`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `tbv_kota`
+-- Temporary table structure for view `tbv_kota`
 --
 
 DROP TABLE IF EXISTS `tbv_kota`;
 /*!50001 DROP VIEW IF EXISTS `tbv_kota`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `tbv_kota` AS SELECT 
  1 AS `id_kota`,
  1 AS `kota`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `tbv_toko`
+-- Temporary table structure for view `tbv_toko`
 --
 
 DROP TABLE IF EXISTS `tbv_toko`;
 /*!50001 DROP VIEW IF EXISTS `tbv_toko`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `tbv_toko` AS SELECT 
  1 AS `id_user`,
  1 AS `nama_toko`,
@@ -203,13 +203,13 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `tbv_transaksi`
+-- Temporary table structure for view `tbv_transaksi`
 --
 
 DROP TABLE IF EXISTS `tbv_transaksi`;
 /*!50001 DROP VIEW IF EXISTS `tbv_transaksi`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `tbv_transaksi` AS SELECT 
  1 AS `id_transaksi`,
  1 AS `id_user`,
@@ -237,7 +237,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `tbv_barang` AS select `tb`.`id_barang` AS `id_barang`,`tb`.`nama_barang` AS `nama_barang` from `tbm_barang` `tb` where ((`tb`.`deleted_by` is null) and (`tb`.`date_deleted` is null)) */;
+/*!50001 VIEW `tbv_barang` AS select `tb`.`id_barang` AS `id_barang`,`tb`.`nama_barang` AS `nama_barang` from `tbm_barang` `tb` where (isnull(`tb`.`deleted_by`) and isnull(`tb`.`date_deleted`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -255,7 +255,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `tbv_kota` AS select `tk`.`id_kota` AS `id_kota`,`tk`.`kota` AS `kota` from `tbm_kota` `tk` where ((`tk`.`deleted_by` is null) and (`tk`.`date_deleted` is null)) */;
+/*!50001 VIEW `tbv_kota` AS select `tk`.`id_kota` AS `id_kota`,`tk`.`kota` AS `kota` from `tbm_kota` `tk` where (isnull(`tk`.`deleted_by`) and isnull(`tk`.`date_deleted`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -270,9 +270,9 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `tbv_toko` AS select `tu`.`id_user` AS `id_user`,`tu`.`nama_toko` AS `nama_toko`,`tu`.`status` AS `status`,`tu`.`alamat` AS `alamat`,`tk`.`id_kota` AS `id_kota`,`tk`.`kota` AS `kota`,`ti`.`image_name` AS `image` from ((`tbm_user` `tu` join `tbm_kota` `tk` on((`tk`.`id_kota` = `tu`.`fk_kota`))) left join `tbm_image` `ti` on((`ti`.`fk_user` = `tu`.`id_user`))) where ((`tu`.`nama_toko` is not null) and (`tu`.`langitude` is not null) and (`tu`.`longitude` is not null)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -288,10 +288,10 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
-/*!50001 VIEW `tbv_transaksi` AS select `tt`.`id_transaksi` AS `id_transaksi`,`us`.`id_user` AS `id_user`,`tt`.`harga` AS `harga`,`tt`.`diskon` AS `diskon`,`us`.`nama_toko` AS `nama_toko`,`tb`.`nama_barang` AS `nama_barang`,`im`.`image_name` AS `image_name` from (((`tbt_transkasi` `tt` join `tbm_user` `us` on((`us`.`id_user` = `tt`.`fk_user`))) join `tbm_barang` `tb` on((`tb`.`id_barang` = `tt`.`fk_barang`))) left join `tbm_image` `im` on((`im`.`fk_transaksi` = `tt`.`id_transaksi`))) where ((`im`.`fk_user` is null) and (`tt`.`deleted_by` is null) and (`tt`.`date_deleted` is null)) */;
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `tbv_transaksi` AS select `tt`.`id_transaksi` AS `id_transaksi`,`us`.`id_user` AS `id_user`,`tt`.`harga` AS `harga`,`tt`.`diskon` AS `diskon`,`us`.`nama_toko` AS `nama_toko`,`tb`.`nama_barang` AS `nama_barang`,`im`.`image_name` AS `image_name` from (((`tbt_transkasi` `tt` join `tbm_user` `us` on((`us`.`id_user` = `tt`.`fk_user`))) join `tbm_barang` `tb` on((`tb`.`id_barang` = `tt`.`fk_barang`))) left join `tbm_image` `im` on((`im`.`fk_transaksi` = `tt`.`id_transaksi`))) where (isnull(`im`.`fk_user`) and isnull(`tt`.`deleted_by`) and isnull(`tt`.`date_deleted`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -305,4 +305,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-16 18:32:42
+-- Dump completed on 2021-09-28  5:41:52
