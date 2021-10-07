@@ -195,19 +195,21 @@ class Home extends CI_Controller
 		return redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function deleteDataToko(){
+	public function deleteDataToko()
+	{
 		$this->load->model(['Transaksi']);
 		$id = $this->input->post('id');
 		$this->Transaksi->prosesDeleteDataToko($id);
 		echo json_encode('sukses');
 	}
 
-	public function perhitungan(){
-		$this->load->model(['MasterUser','TableTemporary']);
+	public function perhitungan()
+	{
+		$this->load->model(['MasterUser', 'TableTemporary']);
 		$data = $this->MasterUser->getAllToko();
 		$this->TableTemporary->createTableTemporaryPartikel();
 		foreach ($data as $row) {
-			$this->TableTemporary->insertTemporaryPartikel(substr($row->longitude,0,-5).rand(0,99999),substr($row->latitude,0,-5).rand(0,99999));
+			$this->TableTemporary->insertTemporaryPartikel(substr($row->longitude, 0, -5) . rand(0, 99999), substr($row->latitude, 0, -5) . rand(0, 99999));
 		}
 		$get = $this->TableTemporary->selectPartikel();
 		// print_r(count($get->result()));
