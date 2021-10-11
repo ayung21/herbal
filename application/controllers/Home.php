@@ -230,7 +230,7 @@ class Home extends CI_Controller
 				$latitude  = round(exp(pow($row->latitude - $get->result()[$i]->latitude, 2)), 6);
 				$longitude = round(exp(pow($row->longitude - $get->result()[$i]->longitude, 2)), 6);
 			// 	// $longitude = $row->longitude - (112.7849426);
-				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), $i);
+				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1));
 			// 	// print_r($latitude);
 			// 	// print_r($row->longitude);
 			// 	// print_r(round($longitude,6));
@@ -242,7 +242,9 @@ class Home extends CI_Controller
 			// 	// print_r(112.7849426);
 
 			}
-			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i);
+			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i+1);
+			// print_r($getHasil);
+			// die();
 			$this->TableTemporary->insertHasilPerPartikel($getHasil);
 		}
 		// print_r(round(exp(-0.000874 * (-0.000874)),6));

@@ -18,6 +18,7 @@ class TableTemporary extends CI_Model
                 nama_toko VARCHAR(200),
                 longitude VARCHAR(200),
                 latitude VARCHAR(200),
+                hasil VARCHAR(200),
                 partikel int(11)
             )
         ");
@@ -29,6 +30,7 @@ class TableTemporary extends CI_Model
                 nama_toko VARCHAR(200),
                 longitude VARCHAR(200),
                 latitude VARCHAR(200),
+                hasil VARCHAR(200),
                 partikel int(11)
             )
         ");
@@ -46,7 +48,7 @@ class TableTemporary extends CI_Model
             SELECT * 
             FROM perhitungan
             WHERE partikel = ".$i."
-            ORDER BY longitude ASC, latitude ASC
+            ORDER BY hasil ASC
             LIMIT 1
         ")->row();
     }
@@ -78,6 +80,7 @@ class TableTemporary extends CI_Model
             'nama_toko' => $nama_toko,
             'longitude' => $longitude,
             'latitude'  => $latitude,
+            'hasil'     => round(sqrt($latitude + $longitude),6),
             'partikel'  => $parikel
         );
         return $this->db->insert('perhitungan', $data);
@@ -88,9 +91,10 @@ class TableTemporary extends CI_Model
             'nama_toko' => $getHasil->nama_toko,
             'longitude' => $getHasil->longitude,
             'latitude'  => $getHasil->latitude,
+            'hasil'     => $getHasil->hasil,
             'partikel'  => $getHasil->partikel
         );
-        return $this->db->insert('perhitungan', $data);
+        return $this->db->insert('hasilperhitungan', $data);
     }
 
     
