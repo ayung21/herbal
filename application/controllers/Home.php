@@ -10,6 +10,7 @@ class Home extends CI_Controller
 		$data = array(
 			'data'		=> $this->Transaksi->getAllDataToko(),
 			'content'	=> 'penjualan',
+			'active'	=> 'home'
 		);
 		$this->load->view('components/main', $data);
 	}
@@ -28,6 +29,7 @@ class Home extends CI_Controller
 		$data = array(
 			'data'		=> $this->MasterBarang->getAllDataBarang(),
 			'content'	=> 'master_barang',
+			'active'	=> 'master-barang'
 		);
 
 		$this->load->view('components/main', $data);
@@ -81,6 +83,7 @@ class Home extends CI_Controller
 		$data = array(
 			'data'		=> $this->MasterKota->getAllDataKota(),
 			'content'	=> 'master_kota',
+			'active'	=> 'master-kota'
 		);
 
 		$this->load->view('components/main', $data);
@@ -134,6 +137,7 @@ class Home extends CI_Controller
 		$data = array(
 			'data'		=> $this->Transaksi->getDataToko(),
 			'content'	=> 'list_barang_toko',
+			'active'	=> 'list-barang-toko'
 		);
 		$this->load->view('components/main', $data);
 	}
@@ -144,6 +148,7 @@ class Home extends CI_Controller
 		$data = array(
 			'data'		=> $this->MasterUser->getAllToko(),
 			'content'	=> 'list_toko',
+			'active'	=> 'list-toko'
 		);
 		$this->load->view('components/main', $data);
 	}
@@ -205,6 +210,10 @@ class Home extends CI_Controller
 
 	public function perhitungan()
 	{
+		// $this->db->query("DROP TEMPORARY TABLE partikel");
+		// $this->db->query("DROP TEMPORARY TABLE perhitungan");
+		// $this->db->query("DROP TEMPORARY TABLE hasilperhitungan");
+		// die();
 		$this->load->model(['MasterUser', 'TableTemporary']);
 		$data = $this->MasterUser->getAllToko();
 		$this->TableTemporary->createTableTemporaryPartikel();
@@ -212,52 +221,18 @@ class Home extends CI_Controller
 			$this->TableTemporary->insertTemporaryPartikel(substr($row->longitude, 0, -5) . rand(0, 99999), substr($row->latitude, 0, -5) . rand(0, 99999));
 		}
 		$get = $this->TableTemporary->selectPartikel();
-		// print_r(count($get->result()));
-		// echo "<br>";
-		// print_r(pow($get->num_rows(),2));
-		// echo "<br>";
-		// print_r($get->num_rows());
-		// echo "<br>";
-		// print_r($get->result());
-		// die();
 		$this->TableTemporary->createTableTemporaryPerhitungan();
 		$this->TableTemporary->createTableTemporaryHasil();
 		for ($i = 0; $i < $get->num_rows(); $i++) {
-			// print_r($get->result()[$i]->latitude);
 			foreach ($data as $row) {
-			// 	// $latitude  = $row->latitude - (-7.310746);
-			// 	// $longitude = $row->longitude - (112.7849426);
 				$latitude  = round(exp(pow($row->latitude - $get->result()[$i]->latitude, 2)), 6);
 				$longitude = round(exp(pow($row->longitude - $get->result()[$i]->longitude, 2)), 6);
-			// 	// $longitude = $row->longitude - (112.7849426);
 				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1));
-			// 	// print_r($latitude);
-			// 	// print_r($row->longitude);
-			// 	// print_r(round($longitude,6));
-			// 	// echo "<br>";
-			// 	// print_r(pow(round($longitude,6),2));
-			// 	// echo "<br>";
-			// 	// print_r(pow($longitude,2));
-			// 	// echo "<br>";
-			// 	// print_r(112.7849426);
-
 			}
 			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i+1);
-			// print_r($getHasil);
-			// die();
 			$this->TableTemporary->insertHasilPerPartikel($getHasil);
 		}
-		// print_r(round(exp(-0.000874 * (-0.000874)),6));
-		// echo "<br>";
-		// $hasil = exp(-0.000874 * (-0.000874));
-		// print_r(round($hasil, 6));
-		// echo "<br>";
-		// print_r(exp(-0.000874 * (-0.000874)));
-		// print_r(round(112.7840687 - 112.7849426,6));
-		// $hasil = $this->TableTemporary->selectHasilPerhitungan();
 		$hasil = $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		echo json_encode($hasil);
-		// print_r($get);
-		// print_r(rand(0,99999));
 	}
 }
