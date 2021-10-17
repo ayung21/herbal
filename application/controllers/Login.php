@@ -201,4 +201,9 @@ class Login extends CI_Controller
 		$this->session->set_userdata('data', $data);
 		return redirect('Home');
 	}
+
+	public function logout(){
+		session_destroy();
+		return redirect('Home');
+	}
 }
