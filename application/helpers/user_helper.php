@@ -31,4 +31,11 @@ if (!function_exists('user')) {
         $data = $ci->MasterBarang->getAllDataBarang();
         return $data;
     }
+
+    function mobile(){
+        $ci = &get_instance();
+        $ci->load->library('Mobile_Detect');
+        $data = new Mobile_Detect;
+        return $data->isMobile();
+    }
 }
