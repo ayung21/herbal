@@ -286,7 +286,8 @@ a:focus {
 	padding: 2px 3px;
 	line-height: 0.9;
 }
-.main-header .logo {
+.main-header .logo,
+.main-header .logo2 {
 	display: block;
 	float: left;
 	height: 50px;
@@ -383,6 +384,10 @@ a:focus {
 		float: none;
 		position: relative !important;
 	}
+	.main-header .logo2 {
+		float: none;
+		position: relative !important;
+	}
 	.main-header .navbar {
 		margin: 0;
 	}
@@ -424,6 +429,7 @@ a:focus {
 }
 @media (min-width: 768px) {
 	.sidebar-collapse .logo,
+	.sidebar-collapse .logo2,
 	.sidebar-collapse .main-sidebar,
 	.sidebar-collapse .left-side {
 		-webkit-transform: translate(-230px, 0);
@@ -434,6 +440,7 @@ a:focus {
 }
 @media (max-width: 767px) {
 	.sidebar-open .logo,
+	.sidebar-open .logo2,
 	.sidebar-open .main-sidebar,
 	.sidebar-open .left-side {
 		-webkit-transform: translate(0, 0);
@@ -4320,8 +4327,23 @@ Gradient Background colors
 	float: left;
 	padding: 10px 10px 10px 11px;
 }
+.prod_box_mobile {
+	width: 150px;
+	height: auto;
+	float: left;
+	padding: 10px 0 10px 0;
+}
 .center_prod_box {
 	width: 173px;
+	height: auto;
+	float: left;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	border: 1px #f0f4f5 solid;
+}
+.center_prod_box_mobile {
+	width: 118px;
 	height: auto;
 	float: left;
 	text-align: center;
@@ -4334,6 +4356,16 @@ Gradient Background colors
 	padding: 5px 0 5px 30px;
 	font-weight: bold;
 	font-size: 16px;
+}
+.product_title_mobile {
+	color: #ff8a00;
+	/* padding: 5px 0 5px 30px; */
+	font-weight: bold;
+	font-size: 16px;
+}
+.product_img_mobile {
+	padding: 5px 0 5px 0;
+	/* width: 130%; */
 }
 .product_img {
 	padding: 5px 0 5px 0;
@@ -4350,6 +4382,10 @@ Gradient Background colors
 }
 .img_barang_herbal {
 	width: 100%;
+}
+.img_barang_herbal_mobile {
+	width: 30%;
+	height: 10%;
 }
 span.reduce {
 	color: #666666;
@@ -4377,6 +4413,18 @@ a.prod_details {
 	float: right;
 	background: url(../img/link_bg.gif) no-repeat center;
 	margin: 2px -20px 0 0;
+	text-align: center;
+	line-height: 24px;
+	text-decoration: none;
+	color: #159dcc;
+}
+a.prod_details_mobile {
+	width: 75px;
+	height: 24px;
+	display: block;
+	/* float: right; */
+	background: url(../img/link_bg.gif) no-repeat center;
+	margin: 2px -20px 0 20px;
 	text-align: center;
 	line-height: 24px;
 	text-decoration: none;
