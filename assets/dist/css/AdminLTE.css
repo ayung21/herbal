@@ -2498,11 +2498,11 @@ table.text-center th {
 .direct-chat-timestamp {
 	color: #999;
 }
-.direct-chat-contacts-open {
+/* .direct-chat-contacts-open { */
 	/*.direct-chat-messages {
     .translate(-101%, 0);
   }*/
-}
+/* } */
 .direct-chat-contacts-open .direct-chat-contacts {
 	-webkit-transform: translate(0, 0);
 	-ms-transform: translate(0, 0);
