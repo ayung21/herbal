@@ -77,13 +77,13 @@
 
     .line {
       height: 1px;
-      width: 45%;
+      width: 40%;
       background-color: #e0e0e0;
       margin-top: 10px;
     }
 
     .or {
-      width: 10%;
+      width: 20%;
       font-weight: bold;
     }
 

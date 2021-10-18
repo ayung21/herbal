@@ -76,13 +76,13 @@
 
     .line {
       height: 1px;
-      width: 45%;
+      width: 42%;
       background-color: #e0e0e0;
       margin-top: 10px;
     }
 
     .or {
-      width: 10%;
+      width: 15%;
       font-weight: bold;
     }
 
@@ -230,7 +230,7 @@
             </form>
             <div class="row mb-4 px-3">
               <small class="font-weight-bold">Don't have an account?
-                <a class="text-danger">Register</a></small>
+                <a href="<?= base_url('Login/daftar') ?>" class="text-danger">Register</a></small>
             </div>
           </div>
         </div>
