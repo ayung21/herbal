@@ -235,4 +235,12 @@ class Home extends CI_Controller
 		$hasil = $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		echo json_encode($hasil);
 	}
+
+	public function mobiledetect(){
+		if(mobile()){
+			print_r('Mobile');
+		}else{
+			print_r('Web');
+		}
+	}
 }

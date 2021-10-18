@@ -5,52 +5,60 @@
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="<?= base_url('Home'); ?>" class="logo"><b>Herbal</b></a>
+            <?php if (mobile()) { ?>
+                <a href="<?= base_url('Home'); ?>" class="logo" style="width: 230px;"><b>Herbal</b></a>
+            <?php } else { ?>
+                <a href="<?= base_url('Home'); ?>" class="logo"><b>Herbal</b></a>
+            <?php } ?>
             <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top header-info top-header-info" role="navigation">
-                <!-- Sidebar toggle button-->
-                <!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <?php if (mobile()) { ?>
+                <nav class="navbar navbar-static-top header-info top-header-info" style="height: 0px;margin-top: -51px;" role="navigation">
+            <?php } else { ?>
+                    <nav class="navbar navbar-static-top header-info top-header-info" style="height: 0px;" role="navigation">
+            <?php } ?>
+                    <!-- Sidebar toggle button-->
+                    <!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a> -->
-                <!-- <a href="#" class="sidebar-toggle" id="toggle-menu" style="display: block;">
+                    <!-- <a href="#" class="sidebar-toggle" id="toggle-menu" style="display: block;">
                 <i class="fa fa-bars" aria-hidden="true" style="color: white;"></i>
                 </a> -->
-                <button class="button-tombol-menu show-sidebar">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <button class="button-tombol-menu show-sidebar" style="height: 50px;">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <?php if (!empty(auth())) : ?>
+                                        <span class="hidden-xs"><?= user()->nama_toko; ?></span>
+                                    <?php else : ?>
+                                        <a style="margin-top: -39px;" href="<?= base_url('Login'); ?>"><button class="btn btn-success">Login</button></a>
+                                        <!-- <span class="hidden-xs"><a href="<?= base_url('Login'); ?>"><button class="btn btn-primary">Login</button></a></span> -->
+                                    <?php endif; ?>
+                                </a>
                                 <?php if (!empty(auth())) : ?>
-                                    <span class="hidden-xs"><?= user()->nama_toko; ?></span>
-                                <?php else : ?>
-                                    <a style="margin-top: -39px;" href="<?= base_url('Login'); ?>"><button class="btn btn-success">Login</button></a>
-                                    <!-- <span class="hidden-xs"><a href="<?= base_url('Login'); ?>"><button class="btn btn-primary">Login</button></a></span> -->
+                                    <ul class="dropdown-menu">
+                                        <!-- User image -->
+                                        <li class="user-header">
+                                            <!-- <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" /> -->
+                                            <img src="<?= base_url('uploads/img/' . user()->image_name); ?>" class="img-circle" alt="User Image" />
+                                            <p>
+                                                <?= user()->nama_toko; ?>
+                                                <!-- <small>Member since Nov. 2012</small> -->
+                                            </p>
+                                        </li>
+                                        <li class="user-footer">
+                                            <div class="pull-right">
+                                                <a href="<?= base_url('Login/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 <?php endif; ?>
-                            </a>
-                            <?php if (!empty(auth())) : ?>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <!-- <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" /> -->
-                                        <img src="<?= base_url('uploads/img/' . user()->image_name); ?>" class="img-circle" alt="User Image" />
-                                        <p>
-                                            <?= user()->nama_toko; ?>
-                                            <!-- <small>Member since Nov. 2012</small> -->
-                                        </p>
-                                    </li>
-                                    <li class="user-footer">
-                                        <div class="pull-right">
-                                            <a href="<?= base_url('Login/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            <?php endif; ?>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                            </li>
+                        </ul>
+                    </div>
+                    </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
