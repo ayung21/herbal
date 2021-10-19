@@ -186,19 +186,14 @@
     <div class="card card0 border-0">
       <div class="row d-flex">
         <div class="col-lg-6">
-          <div class="card1 pb-5">
-            <div class="row">
-              <img src="<?= base_url('assets/dist/img/CXQmsmF.png'); ?>" class="logo" />
-            </div>
-            <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
-              <img src="<?= base_url('assets/dist/img/toko.jpg'); ?>" class="image" />
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
           <div class="card2 card border-0 px-4 py-5" id="form-daftar">
+            <div class="row">
+              <img src="<?= base_url('assets/dist/img/toko.jpg'); ?>" class="logo" />
+            </div>
             <?php echo form_open('Login/daftarAkun') ?>
-            <div style="text-align: center;color: red;"><h2><?php echo $this->session->flashdata('error') ?></h2></div>
+            <div style="text-align: center;color: red;">
+              <h2><?php echo $this->session->flashdata('error') ?></h2>
+            </div>
             <div class="row px-3 mb-4">
               <div class="line"></div>
               <small class="or text-center">Sign Up </small>
@@ -240,6 +235,15 @@
           </div>
           </form>
         </div>
+        <div class="col-lg-6">
+          <div class="card1 pb-5">
+            <?php if (mobile()) : ?>
+              <div id="myMap" style="position:relative;width:300px;height:277px;margin-left: 23px;"></div>
+            <?php else : ?>
+              <div id="myMap" style="position:relative;width:562px;height:284px;margin-top: 233px;"></div>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
       <div class="bg-blue py-4">
         <div class="row px-3">
@@ -252,6 +256,62 @@
   <script src="<?= base_url(); ?>assets/plugins/jQuery/jQuery-2.1.3.min.js"></script>
   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <script type="text/javascript" src="<?= base_url('assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+  <!-- <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf' async defer></script> -->
+  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf&callback=loadMapScenario' async defer></script>
+  <script type='text/javascript'>
+    // function GetMap() {
+    //   var map = new Microsoft.Maps.Map('#myMap');
+
+    //   //Add your post map load code here.
+    // }
+    // function GetMap() {
+    //     var map = new Microsoft.Maps.Map('#myMap', {
+    //         // credentials: 'Your Bing Maps Key',
+    //         center: new Microsoft.Maps.Location(-7.4189338, 112.7271187)
+    //     });
+
+    //     var center = map.getCenter();
+
+    //     // Create custom Pushpin
+    //     var pin = new Microsoft.Maps.Pushpin(center, {
+    //         title: 'Microsoft',
+    //         subTitle: 'City Center',
+    //         text: '1'
+    //     });
+
+    //     // Add the pushpin to the map
+    //     map.entities.push(pin);
+    // }
+    function loadMapScenario() {
+      var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+   
+      Microsoft.Maps.loadModule('Microsoft.Maps.DrawingTools', function() {
+        var tools = new Microsoft.Maps.DrawingTools(map);
+        tools.showDrawingManager(function(manager) {
+          printText('Drawing manager loaded.');
+          Microsoft.Maps.Events.addHandler(manager, 'drawingStarted', function() {
+            printText('Drawing started.');
+          });
+          Microsoft.Maps.Events.addHandler(manager, 'drawingEnded', function() {
+            printText('Drawing ended.');
+          });
+          Microsoft.Maps.Events.addHandler(manager, 'drawingErased', function() {
+            printText('Drawing erased.');
+          });
+        });
+      });
+
+      function printText(text) {
+        var panel = document.getElementById('printoutPanel');
+        if (panel && text) {
+          var line = document.createElement('div');
+          line.appendChild(document.createTextNode(text));
+          panel.appendChild(line);
+        }
+      }
+
+    }
+  </script>
   <script type="text/javascript">
     var base_url = '<?= base_url() ?>';
     $('#form-daftar').on('keyup', 'input[name="email"]', function() {
@@ -260,9 +320,9 @@
         password = $('input[name="password"]').closest('div').find('div'),
         password_repeat = $('input[name="password_repeat"]').closest('div').find('div');
       if (email.hasClass('valid-feedback') && telp.hasClass('valid-feedback') && password.hasClass('valid-feedback') && password_repeat.hasClass('valid-feedback')) {
-        $('button[type="submit"]').removeAttr('disabled','disabled');
+        $('button[type="submit"]').removeAttr('disabled', 'disabled');
       } else {
-        $('button[type="submit"]').attr('disabled','disabled');
+        $('button[type="submit"]').attr('disabled', 'disabled');
       }
 
       $.ajax({
@@ -297,9 +357,9 @@
         password = $('input[name="password"]').closest('div').find('div'),
         password_repeat = $('input[name="password_repeat"]').closest('div').find('div');
       if (email.hasClass('valid-feedback') && telp.hasClass('valid-feedback') && password.hasClass('valid-feedback') && password_repeat.hasClass('valid-feedback')) {
-        $('button[type="submit"]').removeAttr('disabled','disabled');
+        $('button[type="submit"]').removeAttr('disabled', 'disabled');
       } else {
-        $('button[type="submit"]').attr('disabled','disabled');
+        $('button[type="submit"]').attr('disabled', 'disabled');
       }
 
       $.ajax({
@@ -334,9 +394,9 @@
         password = $('input[name="password"]').closest('div').find('div'),
         password_repeat = $('input[name="password_repeat"]').closest('div').find('div');
       if (email.hasClass('valid-feedback') && telp.hasClass('valid-feedback') && password.hasClass('valid-feedback') && password_repeat.hasClass('valid-feedback')) {
-        $('button[type="submit"]').removeAttr('disabled','disabled');
+        $('button[type="submit"]').removeAttr('disabled', 'disabled');
       } else {
-        $('button[type="submit"]').attr('disabled','disabled');
+        $('button[type="submit"]').attr('disabled', 'disabled');
       }
 
       $.ajax({
@@ -371,9 +431,9 @@
         password = $('input[name="password"]').closest('div').find('div'),
         password_repeat = $('input[name="password_repeat"]').closest('div').find('div');
       if (email.hasClass('valid-feedback') && telp.hasClass('valid-feedback') && password.hasClass('valid-feedback') && password_repeat.hasClass('valid-feedback')) {
-        $('button[type="submit"]').removeAttr('disabled','disabled');
+        $('button[type="submit"]').removeAttr('disabled', 'disabled');
       } else {
-        $('button[type="submit"]').attr('disabled','disabled');
+        $('button[type="submit"]').attr('disabled', 'disabled');
       }
 
       $.ajax({

@@ -38,6 +38,15 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>assets/dist/js/app.min.js" type="text/javascript"></script>
 <script src="<?= base_url('assets/dist/adminjs/app.js'); ?>" type="text/javascript"></script>
+<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf' async defer></script>
+
+<script type='text/javascript'>
+  function GetMap() {
+    var map = new Microsoft.Maps.Map('#myMap');
+
+    //Add your post map load code here.
+  }
+</script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="<?= base_url(); ?>assets/dist/js/pages/dashboard.js" type="text/javascript"></script> -->
 
