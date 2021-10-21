@@ -241,6 +241,7 @@
               <div id="myMap" style="position:relative;width:300px;height:277px;margin-left: 23px;"></div>
             <?php else : ?>
               <div id="myMap" style="position:relative;width:562px;height:284px;margin-top: 233px;"></div>
+              <!-- <iframe src="https://ca84-182-253-70-40.ngrok.io/" style="position:relative;width:562px;height:284px;margin-top: 233px;" frameborder="0"></iframe> -->
             <?php endif; ?>
           </div>
         </div>
@@ -257,8 +258,44 @@
   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <script type="text/javascript" src="<?= base_url('assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
   <!-- <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf' async defer></script> -->
-  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf&callback=loadMapScenario' async defer></script>
+  <!-- <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf&callback=loadMapScenario' async defer></script> -->
+  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
   <script type='text/javascript'>
+  function GetMap() {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
+            showLocateMeButton: true,
+            showMapTypeSelector: false
+        });
+        // console.log('tester');
+
+        //Request the user's location
+        navigator.geolocation.getCurrentPosition(function (position) {
+          // console.log(position);
+            var loc = new Microsoft.Maps.Location(
+                position.coords.latitude,
+                position.coords.longitude);
+
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+
+            //Center the map on the user's location.
+            map.setView({ center: loc, zoom: 15 });
+        });
+    }
+  // function GetMap()
+  //   {
+  //     var map = new Microsoft.Maps.Map('#myMap', {
+  //           credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
+  //           showLocateMeButton: false,
+  //           showMapTypeSelector: false
+  //       });
+   
+  //       var map = new Microsoft.Maps.Map('#myMap');
+
+  //       //Add your post map load code here.
+  //   }
     // function GetMap() {
     //   var map = new Microsoft.Maps.Map('#myMap');
 
@@ -282,35 +319,40 @@
     //     // Add the pushpin to the map
     //     map.entities.push(pin);
     // }
-    function loadMapScenario() {
-      var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    // function loadMapScenario() {
+    //   // var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    //   var map = new Microsoft.Maps.Map('#myMap', {
+    //         credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
+    //         // showLocateMeButton: false
+    //         showMapTypeSelector: false
+    //     });
    
-      Microsoft.Maps.loadModule('Microsoft.Maps.DrawingTools', function() {
-        var tools = new Microsoft.Maps.DrawingTools(map);
-        tools.showDrawingManager(function(manager) {
-          printText('Drawing manager loaded.');
-          Microsoft.Maps.Events.addHandler(manager, 'drawingStarted', function() {
-            printText('Drawing started.');
-          });
-          Microsoft.Maps.Events.addHandler(manager, 'drawingEnded', function() {
-            printText('Drawing ended.');
-          });
-          Microsoft.Maps.Events.addHandler(manager, 'drawingErased', function() {
-            printText('Drawing erased.');
-          });
-        });
-      });
+    //   Microsoft.Maps.loadModule('Microsoft.Maps.DrawingTools', function() {
+    //     var tools = new Microsoft.Maps.DrawingTools(map);
+    //     tools.showDrawingManager(function(manager) {
+    //       printText('Drawing manager loaded.');
+    //       Microsoft.Maps.Events.addHandler(manager, 'drawingStarted', function() {
+    //         printText('Drawing started.');
+    //       });
+    //       Microsoft.Maps.Events.addHandler(manager, 'drawingEnded', function() {
+    //         printText('Drawing ended.');
+    //       });
+    //       Microsoft.Maps.Events.addHandler(manager, 'drawingErased', function() {
+    //         printText('Drawing erased.');
+    //       });
+    //     });
+    //   });
 
-      function printText(text) {
-        var panel = document.getElementById('printoutPanel');
-        if (panel && text) {
-          var line = document.createElement('div');
-          line.appendChild(document.createTextNode(text));
-          panel.appendChild(line);
-        }
-      }
+    //   function printText(text) {
+    //     var panel = document.getElementById('printoutPanel');
+    //     if (panel && text) {
+    //       var line = document.createElement('div');
+    //       line.appendChild(document.createTextNode(text));
+    //       panel.appendChild(line);
+    //     }
+    //   }
 
-    }
+    // }
   </script>
   <script type="text/javascript">
     var base_url = '<?= base_url() ?>';
