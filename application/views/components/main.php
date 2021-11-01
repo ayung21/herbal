@@ -86,7 +86,7 @@
                 </form> -->
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu">
+                <ul class="sidebar-menu" <?php if(mobile()): ?> style="margin-left:230px;width: 100%;margin-top: -48px;" <?php endif; ?>>
                     <?php if (!empty(auth())) : ?>
                         <li class="header">MAIN NAVIGATION</li>
                         <li <?php if ($active == 'list-barang-toko') {
