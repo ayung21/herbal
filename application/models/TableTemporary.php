@@ -18,6 +18,8 @@ class TableTemporary extends CI_Model
                 nama_toko VARCHAR(200),
                 longitude VARCHAR(200),
                 latitude VARCHAR(200),
+                longitude_partikel VARCHAR(200),
+                latitude_partikel VARCHAR(200),
                 hasil VARCHAR(200),
                 partikel int(11)
             )
@@ -30,6 +32,8 @@ class TableTemporary extends CI_Model
                 nama_toko VARCHAR(200),
                 longitude VARCHAR(200),
                 latitude VARCHAR(200),
+                longitude_partikel VARCHAR(200),
+                latitude_partikel VARCHAR(200),
                 hasil VARCHAR(200),
                 partikel int(11)
             )
@@ -75,24 +79,28 @@ class TableTemporary extends CI_Model
         return $this->db->insert('partikel', $data);
     }
 
-    public function hasil_perhitungan($nama_toko,$latitude, $longitude,$parikel){
+    public function hasil_perhitungan($nama_toko,$latitude, $longitude,$parikel,$latitude_partikel,$longitude_partikel){
         $data = array(
-            'nama_toko' => $nama_toko,
-            'longitude' => $longitude,
-            'latitude'  => $latitude,
-            'hasil'     => round(sqrt($latitude + $longitude),6),
-            'partikel'  => $parikel
+            'nama_toko'           => $nama_toko,
+            'longitude'           => $longitude,
+            'latitude'            => $latitude,
+            'longitude_partikel'  => $latitude_partikel,
+            'latitude_partikel'   => $longitude_partikel,
+            'hasil'               => round(sqrt($latitude + $longitude),6),
+            'partikel'            => $parikel
         );
         return $this->db->insert('perhitungan', $data);
     }
 
     public function insertHasilPerPartikel($getHasil){
         $data = array(
-            'nama_toko' => $getHasil->nama_toko,
-            'longitude' => $getHasil->longitude,
-            'latitude'  => $getHasil->latitude,
-            'hasil'     => $getHasil->hasil,
-            'partikel'  => $getHasil->partikel
+            'nama_toko'           => $getHasil->nama_toko,
+            'longitude'           => $getHasil->longitude,
+            'latitude'            => $getHasil->latitude,
+            'longitude_partikel'  => $getHasil->latitude_partikel,
+            'latitude_partikel'   => $getHasil->longitude_partikel,
+            'hasil'               => $getHasil->hasil,
+            'partikel'            => $getHasil->partikel
         );
         return $this->db->insert('hasilperhitungan', $data);
     }

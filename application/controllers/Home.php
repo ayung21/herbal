@@ -210,10 +210,16 @@ class Home extends CI_Controller
 
 	public function perhitungan()
 	{
-		// $this->db->query("DROP TEMPORARY TABLE partikel");
-		// $this->db->query("DROP TEMPORARY TABLE perhitungan");
-		// $this->db->query("DROP TEMPORARY TABLE hasilperhitungan");
-		// die();
+		if ($this->db->table_exists('partikel')) {
+			$this->db->query("DROP TEMPORARY TABLE partikel");
+		}
+		if ($this->db->table_exists('perhitungan')) {
+			$this->db->query("DROP TEMPORARY TABLE perhitungan");
+		}
+		if ($this->db->table_exists('hasilperhitungan')) {
+			$this->db->query("DROP TEMPORARY TABLE hasilperhitungan");
+		}
+
 		$this->load->model(['MasterUser', 'TableTemporary']);
 		$data = $this->MasterUser->getAllToko();
 		$this->TableTemporary->createTableTemporaryPartikel();
@@ -227,19 +233,20 @@ class Home extends CI_Controller
 			foreach ($data as $row) {
 				$latitude  = round(exp(pow($row->latitude - $get->result()[$i]->latitude, 2)), 6);
 				$longitude = round(exp(pow($row->longitude - $get->result()[$i]->longitude, 2)), 6);
-				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1));
+				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1),$get->result()[$i]->latitude,$get->result()[$i]->longitude);
 			}
-			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i+1);
+			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i + 1);
 			$this->TableTemporary->insertHasilPerPartikel($getHasil);
 		}
 		$hasil = $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		echo json_encode($hasil);
 	}
 
-	public function mobiledetect(){
-		if(mobile()){
+	public function mobiledetect()
+	{
+		if (mobile()) {
 			print_r('Mobile');
-		}else{
+		} else {
 			print_r('Web');
 		}
 	}
