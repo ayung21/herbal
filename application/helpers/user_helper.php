@@ -38,4 +38,25 @@ if (!function_exists('user')) {
         $data = new Mobile_Detect;
         return $data->isMobile();
     }
+
+    function longitude(){
+        $x = '<input type="text" id="demo">';
+        echo '<script>
+        var x = document.getElementById("demo")
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+        }
+        </script>';
+        return $x;
+    }
 }
