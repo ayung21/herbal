@@ -11,6 +11,16 @@ class TableTemporary extends CI_Model
             )
         ");
     }
+
+    public function createTableTemporaryUpdatePartikel(){
+        return $this->db->query("
+            CREATE TEMPORARY TABLE updatepartikel(
+                longitude VARCHAR(200),
+                latitude VARCHAR(200),
+                partikel int(11)
+            )
+        ");
+    }
     
     public function createTableTemporaryPerhitungan(){
         return $this->db->query("
