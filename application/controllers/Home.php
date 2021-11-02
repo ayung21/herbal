@@ -210,7 +210,25 @@ class Home extends CI_Controller
 
 	public function perhitungan()
 	{
-		print_r(longitude());
+		// print_r(longitude());
+		$string = $this->load->view('welcome_message', '', TRUE);
+		// print_r($string);
+		die();
+		echo '<script>
+		
+		alert(navigator.geolocation.getCurrentPosition(showPosition));
+        function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+				x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+		
+        function showPosition(position) {
+			alert(position.coords.latitude);
+        }
+        </script>';
 		die();
 		$W	= 0.5;
 		$c1	= 0.8;
