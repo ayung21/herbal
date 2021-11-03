@@ -21,6 +21,18 @@ class TableTemporary extends CI_Model
             )
         ");
     }
+
+    public function createTableTemporaryEuclideanPartikel(){
+        return $this->db->query("
+            CREATE TEMPORARY TABLE euclideanpartikel(
+                nama_toko VARCHAR(200),
+                longitude VARCHAR(200),
+                latitude VARCHAR(200),
+                hasil VARCHAR(200),
+                partikel int(11)
+            )
+        ");
+    }
     
     public function createTableTemporaryPerhitungan(){
         return $this->db->query("
@@ -57,6 +69,13 @@ class TableTemporary extends CI_Model
         ");
     }
 
+    public function selectUpdatePartikel(){
+        return $this->db->query("
+            SELECT * 
+            FROM updatepartikel
+        ");
+    }
+
     public function getDataHasilTerkecil($i){
         return $this->db->query("
             SELECT * 
@@ -74,11 +93,34 @@ class TableTemporary extends CI_Model
         ")->result();
     }
 
+    public function selectHasilUpdatePartikel(){
+        return $this->db->query("
+            SELECT * 
+            FROM updatepartikel
+        ")->result();
+    }
+
+    public function selectHasilEuclideanPartikel(){
+        return $this->db->query("
+            SELECT * 
+            FROM euclideanpartikel
+        ")->result();
+    }
+
     public function selectHasilPerhitunganTerakhir(){
         return $this->db->query("
             SELECT * 
             FROM hasilperhitungan
         ")->result();
+    }
+
+    public function selectHasilTerkecil(){
+        return $this->db->query("
+            SELECT * 
+            FROM hasilperhitungan
+            ORDER BY hasil ASC
+            LIMIT 1
+        ")->row();
     }
 
     public function insertTemporaryPartikel($longitude,$latitude){
@@ -113,6 +155,26 @@ class TableTemporary extends CI_Model
             'partikel'            => $getHasil->partikel
         );
         return $this->db->insert('hasilperhitungan', $data);
+    }
+
+    public function insertHasilUpdatePartikel($latitude, $longitude, $parikel){
+        $data = array(
+            'longitude' => $latitude,
+            'latitude'  => $longitude,
+            'partikel'  => $parikel
+        );
+        return $this->db->insert('updatepartikel', $data);
+    }
+
+    public function insertHasilEuclideanPartikel($nama_toko, $latitude, $longitude, $hasil, $partikel){
+        $data = array(
+            'nama_toko' => $nama_toko,
+            'longitude' => $latitude,
+            'latitude' => $longitude,
+            'hasil' => $hasil,
+            'partikel' => $partikel
+        );
+        return $this->db->insert('euclideanpartikel', $data);
     }
 
     

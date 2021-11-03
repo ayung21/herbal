@@ -210,26 +210,9 @@ class Home extends CI_Controller
 
 	public function perhitungan()
 	{
-		// print_r(longitude());
-		$string = $this->load->view('welcome_message', '', TRUE);
-		// print_r($string);
-		die();
-		echo '<script>
+		$awal_latitude 	= -7.327451;
+		$awal_longitude = 112.731177;
 		
-		alert(navigator.geolocation.getCurrentPosition(showPosition));
-        function getLocation() {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(showPosition);
-            } else { 
-				x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-		
-        function showPosition(position) {
-			alert(position.coords.latitude);
-        }
-        </script>';
-		die();
 		$W	= 0.5;
 		$c1	= 0.8;
 		$c2	= 0.8;
@@ -249,6 +232,9 @@ class Home extends CI_Controller
 		if ($this->db->table_exists('updatepartikel')) {
 			$this->db->query("DROP TEMPORARY TABLE updatepartikel");
 		}
+		if ($this->db->table_exists('euclideanpartikel')) {
+			$this->db->query("DROP TEMPORARY TABLE euclideanpartikel");
+		}
 
 		$this->load->model(['MasterUser', 'TableTemporary']);
 		$data = $this->MasterUser->getAllToko();
@@ -258,6 +244,7 @@ class Home extends CI_Controller
 		}
 		$get = $this->TableTemporary->selectPartikel();
 		$this->TableTemporary->createTableTemporaryPerhitungan();
+		$this->TableTemporary->createTableTemporaryEuclideanPartikel();
 		$this->TableTemporary->createTableTemporaryHasil();
 		$this->TableTemporary->createTableTemporaryUpdatePartikel();
 		for ($i = 0; $i < $get->num_rows(); $i++) {
@@ -269,11 +256,38 @@ class Home extends CI_Controller
 			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i + 1);
 			$this->TableTemporary->insertHasilPerPartikel($getHasil);
 		}
+		$terkecil = $this->TableTemporary->selectHasilTerkecil();
 		for ($i = 0; $i < $get->num_rows(); $i++) {
+			$baris1_1 = $W * 0;
+			$baris1_2 = $c1 * $R1;
+			$baris1_3 = ($awal_latitude - $get->result()[$i]->latitude) * $baris1_2;
+			$baris1_4 = ($awal_longitude - $get->result()[$i]->longitude) * $baris1_3;
 			
+			$baris2_2 = $c2 * $R2;
+			$baris2_3 = ($awal_latitude - $terkecil->latitude_partikel) * $baris2_2;
+			$baris2_4 = ($awal_longitude - $terkecil->longitude_partikel) * $baris2_2;
+			
+			$this->TableTemporary->insertHasilUpdatePartikel($get->result()[$i]->latitude + $baris2_3, $get->result()[$i]->longitude + $baris2_4, $i+1);
 		}
-		$hasil = $this->TableTemporary->selectHasilPerhitunganTerakhir();
+		$getUpdate = $this->TableTemporary->selectUpdatePartikel();
+		for ($i = 0; $i < $getUpdate->num_rows(); $i++) {
+			foreach ($data as $row) {
+				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko,pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2),pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2),sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))), $i+1);
+			}
+		}
+		$hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
+		$hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
+		$hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
 		echo json_encode($hasil);
+		echo "<br>";
+		echo "<br>";
+		echo json_encode($terkecil);
+		echo "<br>";
+		echo "<br>";
+		echo json_encode($hasilUpdatePartikel);
+		echo "<br>";
+		echo "<br>";
+		echo json_encode($terkecil);
 	}
 
 }
