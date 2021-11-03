@@ -159,8 +159,8 @@ class TableTemporary extends CI_Model
 
     public function insertHasilUpdatePartikel($latitude, $longitude, $parikel){
         $data = array(
-            'longitude' => $latitude,
-            'latitude'  => $longitude,
+            'latitude'  => $latitude,
+            'longitude' => $longitude,
             'partikel'  => $parikel
         );
         return $this->db->insert('updatepartikel', $data);
@@ -170,9 +170,9 @@ class TableTemporary extends CI_Model
         $data = array(
             'nama_toko' => $nama_toko,
             'longitude' => $latitude,
-            'latitude' => $longitude,
-            'hasil' => $hasil,
-            'partikel' => $partikel
+            'latitude'  => $longitude,
+            'hasil'     => $hasil,
+            'partikel'  => $partikel
         );
         return $this->db->insert('euclideanpartikel', $data);
     }

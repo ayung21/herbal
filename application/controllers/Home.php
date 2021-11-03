@@ -272,9 +272,10 @@ class Home extends CI_Controller
 		$getUpdate = $this->TableTemporary->selectUpdatePartikel();
 		for ($i = 0; $i < $getUpdate->num_rows(); $i++) {
 			foreach ($data as $row) {
-				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko,pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2),pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2),sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))), $i+1);
+				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko,round(pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2),6),round(pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2),6),round(sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))),6), $i+1);
 			}
 		}
+		
 		$hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		$hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
 		$hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
@@ -287,7 +288,7 @@ class Home extends CI_Controller
 		echo json_encode($hasilUpdatePartikel);
 		echo "<br>";
 		echo "<br>";
-		echo json_encode($terkecil);
+		echo json_encode($hasilEuclideanPartikel);
 	}
 
 }
