@@ -31,12 +31,12 @@ $(document).ready(function () {
 
 	$("#toggle-menu").css("display", "block");
 
-	$('.select2-basic').select2({
-		'width': '1248px',
+	$(".select2-basic").select2({
+		width: "1248px",
 	});
 
-	$('.select2-basic2').select2({
-		'width': '548px',
+	$(".select2-basic2").select2({
+		width: "548px",
 	});
 
 	$("#example1").dataTable();
@@ -47,6 +47,17 @@ $(document).ready(function () {
 		bSort: true,
 		bInfo: true,
 		bAutoWidth: false,
+	});
+
+	$("#table-terdekat").dataTable({
+		// paginate: false,
+		bPaginate: false,
+		bSearch: false,
+		// bLengthChange: false,
+		bFilter: false,
+		bSort: false,
+		bInfo: false,
+		// bAutoWidth: false,
 	});
 
 	// =====================================================================================================================================================
@@ -189,24 +200,27 @@ $(document).ready(function () {
 	// 															FORM DAFTAR DATADIRI
 	// =====================================================================================================================================================
 
-	$('#form-datadiri').on('change', 'input:file', function () {
-		var file_data = $(this).prop('files')[0],
+	$("#form-datadiri").on("change", "input:file", function () {
+		var file_data = $(this).prop("files")[0],
 			temp = $('input[name="file_temp"]').val(),
 			form_data = new FormData();
-		form_data.append('images', file_data);
-		form_data.append('temp', temp);
+		form_data.append("images", file_data);
+		form_data.append("temp", temp);
 		$.ajax({
-			url: base_url + 'Login/uploadImageTemp',
-			dataType: 'json',
+			url: base_url + "Login/uploadImageTemp",
+			dataType: "json",
 			cache: false,
 			contentType: false,
 			processData: false,
 			data: form_data,
-			type: 'post',
+			type: "post",
 			success: function (result) {
-				$('img.avatar-pic').attr('src', base_url + 'uploads/temp/' + result.img);
+				$("img.avatar-pic").attr(
+					"src",
+					base_url + "uploads/temp/" + result.img
+				);
 				$('input[name="file_temp"]').val(result.img);
-			}
+			},
 		});
 	});
 
@@ -217,45 +231,51 @@ $(document).ready(function () {
 	// =====================================================================================================================================================
 	// 															LIST BARANG TOKO
 	// =====================================================================================================================================================
-	$('#form-create-barang-toko').on('change', 'input:file', function () {
-		var file_data = $(this).prop('files')[0],
+	$("#form-create-barang-toko").on("change", "input:file", function () {
+		var file_data = $(this).prop("files")[0],
 			temp = $('input[name="file_temp"]').val(),
 			form_data = new FormData();
-		form_data.append('images', file_data);
-		form_data.append('temp', temp);
+		form_data.append("images", file_data);
+		form_data.append("temp", temp);
 		$.ajax({
-			url: base_url + 'Login/uploadImageTemp',
-			dataType: 'json',
+			url: base_url + "Login/uploadImageTemp",
+			dataType: "json",
 			cache: false,
 			contentType: false,
 			processData: false,
 			data: form_data,
-			type: 'post',
+			type: "post",
 			success: function (result) {
-				$('img.avatar-pic2').attr('src', base_url + 'uploads/temp/' + result.img);
+				$("img.avatar-pic2").attr(
+					"src",
+					base_url + "uploads/temp/" + result.img
+				);
 				$('input[name="file_temp"]').val(result.img);
-			}
+			},
 		});
 	});
 
-	$('#form-update-barang-toko').on('change', 'input:file', function () {
-		var file_data = $(this).prop('files')[0],
+	$("#form-update-barang-toko").on("change", "input:file", function () {
+		var file_data = $(this).prop("files")[0],
 			temp = $('input[name="file_temp"]').val(),
 			form_data = new FormData();
-		form_data.append('images', file_data);
-		form_data.append('temp', temp);
+		form_data.append("images", file_data);
+		form_data.append("temp", temp);
 		$.ajax({
-			url: base_url + 'Login/uploadImageTemp',
-			dataType: 'json',
+			url: base_url + "Login/uploadImageTemp",
+			dataType: "json",
 			cache: false,
 			contentType: false,
 			processData: false,
 			data: form_data,
-			type: 'post',
+			type: "post",
 			success: function (result) {
-				$('img.avatar-pic2').attr('src', base_url + 'uploads/temp/' + result.img);
+				$("img.avatar-pic2").attr(
+					"src",
+					base_url + "uploads/temp/" + result.img
+				);
 				$('input[name="file_temp"]').val(result.img);
-			}
+			},
 		});
 	});
 
@@ -270,9 +290,15 @@ $(document).ready(function () {
 				id: id,
 			},
 			success: function (result) {
-				$('#form-update-barang-toko').find('img.avatar-pic2').attr('src', base_url + 'uploads/img/' + result.image_name);
-				$("#form-update-barang-toko").find('select[name="barang"]').val(result.fk_barang);
-				$("#form-update-barang-toko").find('input[name="file_asli"]').val(result.image_name);
+				$("#form-update-barang-toko")
+					.find("img.avatar-pic2")
+					.attr("src", base_url + "uploads/img/" + result.image_name);
+				$("#form-update-barang-toko")
+					.find('select[name="barang"]')
+					.val(result.fk_barang);
+				$("#form-update-barang-toko")
+					.find('input[name="file_asli"]')
+					.val(result.image_name);
 
 				$.each(result, function (key, value) {
 					$("#form-update-barang-toko")
@@ -285,7 +311,7 @@ $(document).ready(function () {
 
 	$("#example1").on("click", ".delete-data-barang-toko", function () {
 		var id = $(this).attr("data-id"),
-			conf = confirm('yakin menghapus data ???');
+			conf = confirm("yakin menghapus data ???");
 
 		if (conf == true) {
 			$.ajax({
@@ -304,4 +330,42 @@ $(document).ready(function () {
 	// =====================================================================================================================================================
 	// 															END LIST BARANG TOKO
 	// =====================================================================================================================================================
+
+	// function getLocation() {
+	// var x = $('div.infor');
+	$("#pencarian-terdekat").on("click", ".button-search", function () {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			//   x.innerHTML = "Geolocation is not supported by this browser.";
+			$("div.infor").text("Geolocation is not supported by this browser.");
+		}
+	});
+	// }
+	
+	function showPosition(position) {
+		$.ajax({
+			type: "post",
+			url: base_url + "Home/perhitungan",
+			dataType: "json",
+			data: {
+				latitude  : position.coords.latitude,
+				longitude : position.coords.longitude
+			},
+			success: function (result) {
+				$('table#table-terdekat').find('tbody tr').eq(0).remove();
+				$('table#table-terdekat').find('tbody')
+				.append($("<tr>")
+						.append($("<td>").append(result.partikel))
+						.append($("<td>").append(result.latitude_partikel))
+						.append($("<td>").append(result.longitude_partikel))
+						.append($("<td>").append(result.nama_toko))
+						.append($("<td>").append(result.hasil))
+						);
+					},
+				});
+		// $("div.infor").text(position.coords.latitude);
+		// x.innerHTML = "Latitude: " + position.coords.latitude +
+		// "<br>Longitude: " + position.coords.longitude;
+	}
 });

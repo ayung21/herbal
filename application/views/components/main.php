@@ -123,6 +123,13 @@
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
+                    <li <?php if ($active == 'list-barang-toko') {
+                            echo "class='active'";
+                        } ?>>
+                        <a href="<?= base_url('Home/Pencarian'); ?>">
+                            <i class="fa fa-th"></i>Pencarian Terdekat
+                        </a>
+                    </li>
                     <!-- <li class="active treeview">
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
