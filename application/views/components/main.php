@@ -123,7 +123,7 @@
                             </li>
                         <?php endif; ?>
                     <?php endif; ?>
-                    <li <?php if ($active == 'list-barang-toko') {
+                    <li <?php if ($active == 'pencarian-toko') {
                             echo "class='active'";
                         } ?>>
                         <a href="<?= base_url('Home/Pencarian'); ?>">
