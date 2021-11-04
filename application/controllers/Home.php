@@ -278,25 +278,27 @@ class Home extends CI_Controller
 			foreach ($data as $row) {
 				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko,round(pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2),6),round(pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2),6),round(sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))),6), $i+1);
 			}
-			
-			$getGbest = $this->TableTemporary->getDataGbestTerkecil($i + 1);
-			$this->TableTemporary->insertGbestPerPartikel($getGbest);
 		}
-		
+
+		for ($i = 0; $i < $get->num_rows(); $i++) {
+			$getGbest = $this->TableTemporary->getDataGbestTerkecil($i + 1);
+			$this->TableTemporary->insertGbestPerPartikel($getGbest,$get->result()[$i]->latitude,$get->result()[$i]->longitude);
+		}
 		$hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		$hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
 		$hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
 		$hasilGbest 			= $this->TableTemporary->selectHasilGbest();
-		echo json_encode($hasil);
-		echo "<br>";
-		echo "<br>";
-		echo json_encode($terkecil);
-		echo "<br>";
-		echo "<br>";
-		echo json_encode($hasilUpdatePartikel);
-		echo "<br>";
-		echo "<br>";
-		echo json_encode($hasilEuclideanPartikel);
+		// echo json_encode($hasil);
+		// echo "<br>";
+		// echo "<br>";
+		// echo json_encode($terkecil);
+		// echo "<br>";
+		// echo "<br>";
+		// echo json_encode($hasilUpdatePartikel);
+		// echo "<br>";
+		// echo "<br>";
+		// echo json_encode($hasilEuclideanPartikel);
+		echo json_encode($get->result());
 		echo "<br>";
 		echo "<br>";
 		echo json_encode($hasilGbest);

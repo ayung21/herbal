@@ -40,6 +40,8 @@ class TableTemporary extends CI_Model
                 nama_toko VARCHAR(200),
                 longitude VARCHAR(200),
                 latitude VARCHAR(200),
+                longitude_partikel VARCHAR(200),
+                latitude_partikel VARCHAR(200),
                 hasil VARCHAR(200),
                 partikel int(11)
             )
@@ -186,13 +188,15 @@ class TableTemporary extends CI_Model
         return $this->db->insert('hasilperhitungan', $data);
     }
 
-    public function insertGbestPerPartikel($getGbest){
+    public function insertGbestPerPartikel($getGbest,$latitude,$longitude){
         $data = array(
-            'nama_toko'   => $getGbest->nama_toko,  
-            'longitude'   => $getGbest->longitude,  
-            'latitude'    => $getGbest->latitude,  
-            'hasil'       => $getGbest->hasil,
-            'partikel'    => $getGbest->partikel,  
+            'nama_toko'          => $getGbest->nama_toko,  
+            'longitude'          => $getGbest->longitude,  
+            'latitude'           => $getGbest->latitude,
+            'longitude_partikel' => $longitude,
+            'latitude_partikel'  => $latitude,
+            'hasil'              => $getGbest->hasil,
+            'partikel'           => $getGbest->partikel,  
         );
         return $this->db->insert('Gbest', $data);
     }
