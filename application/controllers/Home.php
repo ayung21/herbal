@@ -296,9 +296,9 @@ class Home extends CI_Controller
 			$getGbest = $this->TableTemporary->getDataGbestTerkecil($i + 1);
 			$this->TableTemporary->insertGbestPerPartikel($getGbest,$get->result()[$i]->latitude,$get->result()[$i]->longitude);
 		}
-		$hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
-		$hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
-		$hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
+		// $hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
+		// $hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
+		// $hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
 		$hasilGbest 			= $this->TableTemporary->selectHasilGbest();
 		// echo json_encode($hasil);
 		// echo "<br>";
