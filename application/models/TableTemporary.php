@@ -33,6 +33,18 @@ class TableTemporary extends CI_Model
             )
         ");
     }
+
+    public function createTableTemporaryGbest(){
+        return $this->db->query("
+            CREATE TEMPORARY TABLE Gbest(
+                nama_toko VARCHAR(200),
+                longitude VARCHAR(200),
+                latitude VARCHAR(200),
+                hasil VARCHAR(200),
+                partikel int(11)
+            )
+        ");
+    }
     
     public function createTableTemporaryPerhitungan(){
         return $this->db->query("
@@ -86,6 +98,16 @@ class TableTemporary extends CI_Model
         ")->row();
     }
 
+    public function getDataGbestTerkecil($i){
+        return $this->db->query("
+            SELECT * 
+            FROM euclideanpartikel
+            WHERE partikel = ".$i."
+            ORDER BY hasil ASC
+            LIMIT 1
+        ")->row();
+    }
+
     public function selectHasilPerhitungan(){
         return $this->db->query("
             SELECT * 
@@ -104,6 +126,13 @@ class TableTemporary extends CI_Model
         return $this->db->query("
             SELECT * 
             FROM euclideanpartikel
+        ")->result();
+    }
+
+    public function selectHasilGbest(){
+        return $this->db->query("
+            SELECT * 
+            FROM Gbest
         ")->result();
     }
 
@@ -155,6 +184,17 @@ class TableTemporary extends CI_Model
             'partikel'            => $getHasil->partikel
         );
         return $this->db->insert('hasilperhitungan', $data);
+    }
+
+    public function insertGbestPerPartikel($getGbest){
+        $data = array(
+            'nama_toko'   => $getGbest->nama_toko,  
+            'longitude'   => $getGbest->longitude,  
+            'latitude'    => $getGbest->latitude,  
+            'hasil'       => $getGbest->hasil,
+            'partikel'    => $getGbest->partikel,  
+        );
+        return $this->db->insert('Gbest', $data);
     }
 
     public function insertHasilUpdatePartikel($latitude, $longitude, $parikel){

@@ -235,6 +235,9 @@ class Home extends CI_Controller
 		if ($this->db->table_exists('euclideanpartikel')) {
 			$this->db->query("DROP TEMPORARY TABLE euclideanpartikel");
 		}
+		if ($this->db->table_exists('Gbest')) {
+			$this->db->query("DROP TEMPORARY TABLE Gbest");
+		}
 
 		$this->load->model(['MasterUser', 'TableTemporary']);
 		$data = $this->MasterUser->getAllToko();
@@ -247,6 +250,7 @@ class Home extends CI_Controller
 		$this->TableTemporary->createTableTemporaryEuclideanPartikel();
 		$this->TableTemporary->createTableTemporaryHasil();
 		$this->TableTemporary->createTableTemporaryUpdatePartikel();
+		$this->TableTemporary->createTableTemporaryGbest();
 		for ($i = 0; $i < $get->num_rows(); $i++) {
 			foreach ($data as $row) {
 				$latitude  = round(exp(pow($row->latitude - $get->result()[$i]->latitude, 2)), 6);
@@ -274,11 +278,15 @@ class Home extends CI_Controller
 			foreach ($data as $row) {
 				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko,round(pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2),6),round(pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2),6),round(sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))),6), $i+1);
 			}
+			
+			$getGbest = $this->TableTemporary->getDataGbestTerkecil($i + 1);
+			$this->TableTemporary->insertGbestPerPartikel($getGbest);
 		}
 		
 		$hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		$hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
 		$hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
+		$hasilGbest 			= $this->TableTemporary->selectHasilGbest();
 		echo json_encode($hasil);
 		echo "<br>";
 		echo "<br>";
@@ -289,6 +297,9 @@ class Home extends CI_Controller
 		echo "<br>";
 		echo "<br>";
 		echo json_encode($hasilEuclideanPartikel);
+		echo "<br>";
+		echo "<br>";
+		echo json_encode($hasilGbest);
 	}
 
 }
