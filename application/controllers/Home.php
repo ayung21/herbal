@@ -153,6 +153,15 @@ class Home extends CI_Controller
 		$this->load->view('components/main', $data);
 	}
 
+	public function Pencarian()
+	{
+		$data = array(
+			'content'	=> 'pencarian_toko',
+			'active'	=> 'pencarian-toko'
+		);
+		$this->load->view('components/main', $data);
+	}
+
 	public function validasiToko()
 	{
 		$this->load->model('MasterUser');
@@ -210,8 +219,11 @@ class Home extends CI_Controller
 
 	public function perhitungan()
 	{
-		$awal_latitude 	= -7.327451;
-		$awal_longitude = 112.731177;
+		$args = $this->input->post();
+		// $awal_latitude 	= -7.327451;
+		// $awal_longitude = 112.731177;
+		$awal_latitude 	= $args['latitude'];
+		$awal_longitude = $args['longitude'];
 		
 		$W	= 0.5;
 		$c1	= 0.8;
@@ -298,9 +310,9 @@ class Home extends CI_Controller
 		// echo "<br>";
 		// echo "<br>";
 		// echo json_encode($hasilEuclideanPartikel);
-		echo json_encode($get->result());
-		echo "<br>";
-		echo "<br>";
+		// echo json_encode($get->result());
+		// echo "<br>";
+		// echo "<br>";
 		echo json_encode($hasilGbest);
 	}
 

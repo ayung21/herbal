@@ -135,7 +135,9 @@ class TableTemporary extends CI_Model
         return $this->db->query("
             SELECT * 
             FROM Gbest
-        ")->result();
+            ORDER BY hasil ASC
+            LIMIT 1
+        ")->row();
     }
 
     public function selectHasilPerhitunganTerakhir(){
