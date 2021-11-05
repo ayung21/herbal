@@ -331,43 +331,45 @@ $(document).ready(function () {
 	// 															END LIST BARANG TOKO
 	// =====================================================================================================================================================
 
-	// document.getElementById("button-search").onclick = function() {  
+	// document.getElementById("button-search").onclick = function() {
 	// 	alert('tester');
 	// };
 	// function getLocation() {
 	// var x = $('div.infor');
 	// $("#pencarian-terdekat").on("click", ".button-search", function () {
 	// 	alert();
-		// if (navigator.geolocation) {
-		// 	navigator.geolocation.getCurrentPosition(showPosition);
-		// } else {
-		// 	//   x.innerHTML = "Geolocation is not supported by this browser.";
-		// 	$("div.infor").text("Geolocation is not supported by this browser.");
-		// }
+	// if (navigator.geolocation) {
+	// 	navigator.geolocation.getCurrentPosition(showPosition);
+	// } else {
+	// 	//   x.innerHTML = "Geolocation is not supported by this browser.";
+	// 	$("div.infor").text("Geolocation is not supported by this browser.");
+	// }
 	// });
 	// }
-	
+
 	function showPosition(position) {
 		$.ajax({
 			type: "post",
 			url: base_url + "Home/perhitungan",
 			dataType: "json",
 			data: {
-				latitude  : position.coords.latitude,
-				longitude : position.coords.longitude
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
 			},
 			success: function (result) {
-				$('table#table-terdekat').find('tbody tr').eq(0).remove();
-				$('table#table-terdekat').find('tbody')
-				.append($("<tr>")
-						.append($("<td>").append(result.partikel))
-						.append($("<td>").append(result.latitude_partikel))
-						.append($("<td>").append(result.longitude_partikel))
-						.append($("<td>").append(result.nama_toko))
-						.append($("<td>").append(result.hasil))
-						);
-					},
-				});
+				$("table#table-terdekat").find("tbody tr").eq(0).remove();
+				$("table#table-terdekat")
+					.find("tbody")
+					.append(
+						$("<tr>")
+							.append($("<td>").append(result.partikel))
+							.append($("<td>").append(result.latitude_partikel))
+							.append($("<td>").append(result.longitude_partikel))
+							.append($("<td>").append(result.nama_toko))
+							.append($("<td>").append(result.hasil))
+					);
+			},
+		});
 		// $("div.infor").text(position.coords.latitude);
 		// x.innerHTML = "Latitude: " + position.coords.latitude +
 		// "<br>Longitude: " + position.coords.longitude;
