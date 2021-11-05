@@ -6,7 +6,11 @@ class Login extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('login');
+		if (!empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->view('login');
+		endif;
 	}
 
 	public function prosesLogin()
@@ -36,24 +40,35 @@ class Login extends CI_Controller
 
 	public function daftar()
 	{
-		$this->load->view('daftar');
+		if (!empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->view('daftar');
+		endif;
 	}
 
 	public function formDataDiriToko()
 	{
-		$data = array(
-			'content'	=> 'form_datadiri_toko',
-		);
-		$this->load->view('components/main', $data);
-		// $this->load->view('latlot');
+		if (!empty(auth())) :
+			return redirect('Home');
+		else :
+			$data = array(
+				'content'	=> 'form_datadiri_toko',
+			);
+			$this->load->view('components/main', $data);
+		endif;
 	}
 
 	public function updateDataDiriToko()
 	{
-		$data = array(
-			'content'	=> 'update_datadiri_toko',
-		);
-		$this->load->view('components/main', $data);
+		if (!empty(auth())) :
+			return redirect('Home');
+		else :
+			$data = array(
+				'content'	=> 'update_datadiri_toko',
+			);
+			$this->load->view('components/main', $data);
+		endif;
 	}
 
 	public function validationDaftarAkun()
@@ -202,7 +217,8 @@ class Login extends CI_Controller
 		return redirect('Home');
 	}
 
-	public function logout(){
+	public function logout()
+	{
 		session_destroy();
 		return redirect('Home');
 	}

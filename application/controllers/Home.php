@@ -25,32 +25,40 @@ class Home extends CI_Controller
 
 	public function masterBarang()
 	{
-		$this->load->model('MasterBarang');
-		$data = array(
-			'data'		=> $this->MasterBarang->getAllDataBarang(),
-			'content'	=> 'master_barang',
-			'active'	=> 'master-barang'
-		);
+		if (empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->model('MasterBarang');
+			$data = array(
+				'data'		=> $this->MasterBarang->getAllDataBarang(),
+				'content'	=> 'master_barang',
+				'active'	=> 'master-barang'
+			);
 
-		$this->load->view('components/main', $data);
+			$this->load->view('components/main', $data);
+		endif;
 	}
 
 	public function createBarang()
 	{
-		$this->load->library('form_validation');
+		if (empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('barang', 'Barang', 'is_unique[tbv_barang.nama_barang]', array(
-			'is_unique'    => '%s sudah ada',
-		));
+			$this->form_validation->set_rules('barang', 'Barang', 'is_unique[tbv_barang.nama_barang]', array(
+				'is_unique'    => '%s sudah ada',
+			));
 
-		if ($this->form_validation->run() == FALSE) {
-			$this->session->set_flashdata('error', form_error('barang'));
-		} else {
-			$this->load->model('MasterBarang');
-			$args = $this->input->post();
-			$this->MasterBarang->prosesCreateBarang($args);
-		}
-		return redirect($_SERVER['HTTP_REFERER']);
+			if ($this->form_validation->run() == FALSE) {
+				$this->session->set_flashdata('error', form_error('barang'));
+			} else {
+				$this->load->model('MasterBarang');
+				$args = $this->input->post();
+				$this->MasterBarang->prosesCreateBarang($args);
+			}
+			return redirect($_SERVER['HTTP_REFERER']);
+		endif;
 	}
 
 	public function deleteBarang()
@@ -79,32 +87,40 @@ class Home extends CI_Controller
 
 	public function masterKota()
 	{
-		$this->load->model('MasterKota');
-		$data = array(
-			'data'		=> $this->MasterKota->getAllDataKota(),
-			'content'	=> 'master_kota',
-			'active'	=> 'master-kota'
-		);
+		if (empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->model('MasterKota');
+			$data = array(
+				'data'		=> $this->MasterKota->getAllDataKota(),
+				'content'	=> 'master_kota',
+				'active'	=> 'master-kota'
+			);
 
-		$this->load->view('components/main', $data);
+			$this->load->view('components/main', $data);
+		endif;
 	}
 
 	public function createKota()
 	{
-		$this->load->library('form_validation');
+		if (empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('kota', 'Kota', 'is_unique[tbv_kota.kota]', array(
-			'is_unique'    => '%s sudah ada',
-		));
+			$this->form_validation->set_rules('kota', 'Kota', 'is_unique[tbv_kota.kota]', array(
+				'is_unique'    => '%s sudah ada',
+			));
 
-		if ($this->form_validation->run() == FALSE) {
-			$this->session->set_flashdata('error', form_error('kota'));
-		} else {
-			$this->load->model('MasterKota');
-			$args = $this->input->post();
-			$this->MasterKota->prosesCreateKota($args);
-		}
-		return redirect($_SERVER['HTTP_REFERER']);
+			if ($this->form_validation->run() == FALSE) {
+				$this->session->set_flashdata('error', form_error('kota'));
+			} else {
+				$this->load->model('MasterKota');
+				$args = $this->input->post();
+				$this->MasterKota->prosesCreateKota($args);
+			}
+			return redirect($_SERVER['HTTP_REFERER']);
+		endif;
 	}
 
 	public function deleteKota()
@@ -133,24 +149,32 @@ class Home extends CI_Controller
 
 	public function listBarangToko()
 	{
-		$this->load->model('Transaksi');
-		$data = array(
-			'data'		=> $this->Transaksi->getDataToko(),
-			'content'	=> 'list_barang_toko',
-			'active'	=> 'list-barang-toko'
-		);
-		$this->load->view('components/main', $data);
+		if (empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->model('Transaksi');
+			$data = array(
+				'data'		=> $this->Transaksi->getDataToko(),
+				'content'	=> 'list_barang_toko',
+				'active'	=> 'list-barang-toko'
+			);
+			$this->load->view('components/main', $data);
+		endif;
 	}
 
 	public function listToko()
 	{
-		$this->load->model('MasterUser');
-		$data = array(
-			'data'		=> $this->MasterUser->getAllToko(),
-			'content'	=> 'list_toko',
-			'active'	=> 'list-toko'
-		);
-		$this->load->view('components/main', $data);
+		if (empty(auth())) :
+			return redirect('Home');
+		else :
+			$this->load->model('MasterUser');
+			$data = array(
+				'data'		=> $this->MasterUser->getAllToko(),
+				'content'	=> 'list_toko',
+				'active'	=> 'list-toko'
+			);
+			$this->load->view('components/main', $data);
+		endif;
 	}
 
 	public function Pencarian()
@@ -224,7 +248,7 @@ class Home extends CI_Controller
 		// $awal_longitude = 112.731177;
 		$awal_latitude 	= $args['latitude'];
 		$awal_longitude = $args['longitude'];
-		
+
 		$W	= 0.5;
 		$c1	= 0.8;
 		$c2	= 0.8;
@@ -267,7 +291,7 @@ class Home extends CI_Controller
 			foreach ($data as $row) {
 				$latitude  = round(exp(pow($row->latitude - $get->result()[$i]->latitude, 2)), 6);
 				$longitude = round(exp(pow($row->longitude - $get->result()[$i]->longitude, 2)), 6);
-				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1),$get->result()[$i]->latitude,$get->result()[$i]->longitude);
+				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1), $get->result()[$i]->latitude, $get->result()[$i]->longitude);
 			}
 			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i + 1);
 			$this->TableTemporary->insertHasilPerPartikel($getHasil);
@@ -278,23 +302,23 @@ class Home extends CI_Controller
 			$baris1_2 = $c1 * $R1;
 			$baris1_3 = ($awal_latitude - $get->result()[$i]->latitude) * $baris1_2;
 			$baris1_4 = ($awal_longitude - $get->result()[$i]->longitude) * $baris1_3;
-			
+
 			$baris2_2 = $c2 * $R2;
 			$baris2_3 = ($awal_latitude - $terkecil->latitude_partikel) * $baris2_2;
 			$baris2_4 = ($awal_longitude - $terkecil->longitude_partikel) * $baris2_2;
-			
-			$this->TableTemporary->insertHasilUpdatePartikel($get->result()[$i]->latitude + $baris2_3, $get->result()[$i]->longitude + $baris2_4, $i+1);
+
+			$this->TableTemporary->insertHasilUpdatePartikel($get->result()[$i]->latitude + $baris2_3, $get->result()[$i]->longitude + $baris2_4, $i + 1);
 		}
 		$getUpdate = $this->TableTemporary->selectUpdatePartikel();
 		for ($i = 0; $i < $getUpdate->num_rows(); $i++) {
 			foreach ($data as $row) {
-				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko,round(pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2),6),round(pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2),6),round(sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))),6), $i+1);
+				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko, round(pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2), 6), round(pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2), 6), round(sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))), 6), $i + 1);
 			}
 		}
 
 		for ($i = 0; $i < $get->num_rows(); $i++) {
 			$getGbest = $this->TableTemporary->getDataGbestTerkecil($i + 1);
-			$this->TableTemporary->insertGbestPerPartikel($getGbest,$get->result()[$i]->latitude,$get->result()[$i]->longitude);
+			$this->TableTemporary->insertGbestPerPartikel($getGbest, $get->result()[$i]->latitude, $get->result()[$i]->longitude);
 		}
 		// $hasil 				 	= $this->TableTemporary->selectHasilPerhitunganTerakhir();
 		// $hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
@@ -315,5 +339,4 @@ class Home extends CI_Controller
 		// echo "<br>";
 		echo json_encode($hasilGbest);
 	}
-
 }
