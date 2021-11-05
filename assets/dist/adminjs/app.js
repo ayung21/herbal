@@ -334,12 +334,13 @@ $(document).ready(function () {
 	// function getLocation() {
 	// var x = $('div.infor');
 	$("#pencarian-terdekat").on("click", ".button-search", function () {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
-		} else {
-			//   x.innerHTML = "Geolocation is not supported by this browser.";
-			$("div.infor").text("Geolocation is not supported by this browser.");
-		}
+		alert();
+		// if (navigator.geolocation) {
+		// 	navigator.geolocation.getCurrentPosition(showPosition);
+		// } else {
+		// 	//   x.innerHTML = "Geolocation is not supported by this browser.";
+		// 	$("div.infor").text("Geolocation is not supported by this browser.");
+		// }
 	});
 	// }
 	
