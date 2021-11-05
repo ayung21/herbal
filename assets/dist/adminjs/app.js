@@ -331,17 +331,20 @@ $(document).ready(function () {
 	// 															END LIST BARANG TOKO
 	// =====================================================================================================================================================
 
+	document.getElementById("button-search").onclick = function() {  
+		alert('tester');
+	};
 	// function getLocation() {
 	// var x = $('div.infor');
-	$("#pencarian-terdekat").on("click", ".button-search", function () {
-		alert();
+	// $("#pencarian-terdekat").on("click", ".button-search", function () {
+	// 	alert();
 		// if (navigator.geolocation) {
 		// 	navigator.geolocation.getCurrentPosition(showPosition);
 		// } else {
 		// 	//   x.innerHTML = "Geolocation is not supported by this browser.";
 		// 	$("div.infor").text("Geolocation is not supported by this browser.");
 		// }
-	});
+	// });
 	// }
 	
 	function showPosition(position) {

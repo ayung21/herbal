@@ -9,7 +9,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Jarak Terdekat</h3>
-                    <button class="button-search">Search</button>
+                    <button id="button-search">Search</button>
                     <div class="infor"></div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
