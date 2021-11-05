@@ -331,9 +331,9 @@ $(document).ready(function () {
 	// 															END LIST BARANG TOKO
 	// =====================================================================================================================================================
 
-	document.getElementById("button-search").onclick = function() {  
-		alert('tester');
-	};
+	// document.getElementById("button-search").onclick = function() {  
+	// 	alert('tester');
+	// };
 	// function getLocation() {
 	// var x = $('div.infor');
 	// $("#pencarian-terdekat").on("click", ".button-search", function () {

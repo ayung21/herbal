@@ -9,7 +9,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Jarak Terdekat</h3>
-                    <button id="button-search">Search</button>
+                    <button class="button-search" onclick="myFunction()">Search</button>
                     <div class="infor"></div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
@@ -41,3 +41,8 @@
         </div><!-- /.col -->
     </div><!-- /.row -->
 </section><!-- /.content -->
+<script>
+    function myFunction() {
+        alert();
+    }
+</script>
