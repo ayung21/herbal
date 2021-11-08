@@ -165,20 +165,21 @@
         var file_data = document.getElementById("tester-input").files[0],
             temp = $('input[name="file_temp"]').val(),
             form_data = new FormData();
-        form_data.append("images", file_data);
-        form_data.append("temp", temp);
-        console.log(file_data);
-        console.log(form_data);
-        $.ajax({
-            url: base_url + "Login/uploadImageTemp",
-            dataType: "json",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: "post",
-            success: function(result) {
-                alert();
+            
+        // form_data.append("images", file_data);
+        // form_data.append("temp", temp);
+        // console.log(file_data);
+        // console.log(form_data);
+        // $.ajax({
+        //     url: base_url + "Login/uploadImageTemp",
+        //     dataType: "json",
+        //     cache: false,
+        //     contentType: false,
+        //     processData: false,
+        //     data: form_data,
+        //     type: "post",
+        //     success: function(result) {
+                alert(file_data);
                 // if(mobile == "mobile"){
                 // 	$("img.mobile-avatar-pic2").attr(
                 // 		"src",
@@ -192,8 +193,8 @@
                 // 	);
                 // 	$('input[name="file_temp"]').val(result.img);
                 // }
-            },
-        });
+        //     },
+        // });
     }
     // });
     // });
