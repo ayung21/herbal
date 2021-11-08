@@ -39,6 +39,10 @@ $(document).ready(function () {
 		width: "548px",
 	});
 
+	if(mobile == "mobile"){
+		$('span.select2').css("width", "100%");
+	}
+
 	$("#example1").dataTable();
 	$("#example2").dataTable({
 		bPaginate: true,

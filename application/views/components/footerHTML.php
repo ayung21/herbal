@@ -49,4 +49,5 @@
 <!-- <script src="<?= base_url(); ?>assets/dist/js/demo.js" type="text/javascript"></script> -->
 <script>
   var base_url = "<?= base_url(); ?>";
+  var mobile = $('input[name="mobile"]').val();
 </script>

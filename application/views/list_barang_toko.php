@@ -64,7 +64,7 @@
                 <div class="box-body">
                     <div class="file-field">
                         <div class="mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic2" alt="example placeholder avatar">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" <?php if(mobile()){?> class="rounded-circle z-depth-1-half mobile-avatar-pic2" <?php }else{ ?> class="rounded-circle z-depth-1-half avatar-pic2" <?php } ?> alt="example placeholder avatar">
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-mdb-color btn-rounded float-left">
@@ -117,7 +117,7 @@
                 <div class="box-body">
                     <div class="file-field">
                         <div class="mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle z-depth-1-half avatar-pic2" alt="example placeholder avatar">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" <?php if(mobile()){?> class="rounded-circle z-depth-1-half mobile-avatar-pic2" <?php }else{ ?> class="rounded-circle z-depth-1-half avatar-pic2" <?php } ?> alt="example placeholder avatar">
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-mdb-color btn-rounded float-left">

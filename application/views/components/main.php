@@ -7,8 +7,10 @@
             <!-- Logo -->
             <?php if (mobile()) { ?>
                 <a href="<?= base_url('Home'); ?>" class="logo" style="width: 230px;"><b>Herbal</b></a>
+                <input type="hidden" name="mobile" value="mobile">
             <?php } else { ?>
                 <a href="<?= base_url('Home'); ?>" class="logo"><b>Herbal</b></a>
+                <input type="hidden" name="mobile" value="web">
             <?php } ?>
             <!-- Header Navbar: style can be found in header.less -->
             <?php if (mobile()) { ?>
