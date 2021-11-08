@@ -235,40 +235,40 @@ $(document).ready(function () {
 	// =====================================================================================================================================================
 	// 															LIST BARANG TOKO
 	// =====================================================================================================================================================
-	$("#form-create-barang-toko").on("change", "input:file", function () {
-		var file_data = $(this).prop("files")[0],
-			temp = $('input[name="file_temp"]').val(),
-			form_data = new FormData();
-		form_data.append("images", file_data);
-		form_data.append("temp", temp);
-		console.log(file_data);
-		console.log(form_data);
-		$.ajax({
-			url: base_url + "Login/uploadImageTemp",
-			dataType: "json",
-			cache: false,
-			contentType: false,
-			processData: false,
-			data: form_data,
-			type: "post",
-			success: function (result) {
-				alert();
-				// if(mobile == "mobile"){
-				// 	$("img.mobile-avatar-pic2").attr(
-				// 		"src",
-				// 		base_url + "uploads/temp/" + result.img
-				// 	);
-				// 	$('input[name="file_temp"]').val(result.img);
-				// }else{
-				// 	$("img.avatar-pic2").attr(
-				// 		"src",
-				// 		base_url + "uploads/temp/" + result.img
-				// 	);
-				// 	$('input[name="file_temp"]').val(result.img);
-				// }
-			},
-		});
-	});
+	// $("#form-create-barang-toko").on("change", "input:file", function () {
+	// 	var file_data = $(this).prop("files")[0],
+	// 		temp = $('input[name="file_temp"]').val(),
+	// 		form_data = new FormData();
+	// 	form_data.append("images", file_data);
+	// 	form_data.append("temp", temp);
+	// 	console.log(file_data);
+	// 	console.log(form_data);
+	// 	$.ajax({
+	// 		url: base_url + "Login/uploadImageTemp",
+	// 		dataType: "json",
+	// 		cache: false,
+	// 		contentType: false,
+	// 		processData: false,
+	// 		data: form_data,
+	// 		type: "post",
+	// 		success: function (result) {
+	// 			alert();
+	// 			// if(mobile == "mobile"){
+	// 			// 	$("img.mobile-avatar-pic2").attr(
+	// 			// 		"src",
+	// 			// 		base_url + "uploads/temp/" + result.img
+	// 			// 	);
+	// 			// 	$('input[name="file_temp"]').val(result.img);
+	// 			// }else{
+	// 			// 	$("img.avatar-pic2").attr(
+	// 			// 		"src",
+	// 			// 		base_url + "uploads/temp/" + result.img
+	// 			// 	);
+	// 			// 	$('input[name="file_temp"]').val(result.img);
+	// 			// }
+	// 		},
+	// 	});
+	// });
 
 	$("#form-update-barang-toko").on("change", "input:file", function () {
 		var file_data = $(this).prop("files")[0],
