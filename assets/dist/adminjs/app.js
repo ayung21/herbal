@@ -252,19 +252,20 @@ $(document).ready(function () {
 			data: form_data,
 			type: "post",
 			success: function (result) {
-				if(mobile == "mobile"){
-					$("img.mobile-avatar-pic2").attr(
-						"src",
-						base_url + "uploads/temp/" + result.img
-					);
-					$('input[name="file_temp"]').val(result.img);
-				}else{
-					$("img.avatar-pic2").attr(
-						"src",
-						base_url + "uploads/temp/" + result.img
-					);
-					$('input[name="file_temp"]').val(result.img);
-				}
+				alert();
+				// if(mobile == "mobile"){
+				// 	$("img.mobile-avatar-pic2").attr(
+				// 		"src",
+				// 		base_url + "uploads/temp/" + result.img
+				// 	);
+				// 	$('input[name="file_temp"]').val(result.img);
+				// }else{
+				// 	$("img.avatar-pic2").attr(
+				// 		"src",
+				// 		base_url + "uploads/temp/" + result.img
+				// 	);
+				// 	$('input[name="file_temp"]').val(result.img);
+				// }
 			},
 		});
 	});
