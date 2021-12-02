@@ -160,11 +160,11 @@
 <script>
     // $(document).ready(function () {
     // $("#form-create-barang-toko").on("change", "input:file", function () {
-    function uploadFile() {
+    // function uploadFile() {
         // var file_data = $(this).prop("files")[0],
-        var file_data = document.getElementById("tester-input").files[0],
-            temp = $('input[name="file_temp"]').val(),
-            form_data = new FormData();
+        // var file_data = document.getElementById("tester-input").files[0],
+        //     temp = $('input[name="file_temp"]').val(),
+        //     form_data = new FormData();
             
         // form_data.append("images", file_data);
         // form_data.append("temp", temp);
@@ -179,7 +179,7 @@
         //     data: form_data,
         //     type: "post",
         //     success: function(result) {
-                alert(file_data);
+                // alert(file_data);
                 // if(mobile == "mobile"){
                 // 	$("img.mobile-avatar-pic2").attr(
                 // 		"src",
@@ -195,7 +195,7 @@
                 // }
         //     },
         // });
-    }
+    // }
     // });
     // });
 </script>
