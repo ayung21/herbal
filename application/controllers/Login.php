@@ -164,7 +164,7 @@ class Login extends CI_Controller
 	{
 		// $this->load->model('MasterKota');
 		// print_r($this->MasterKota->getAllDataKota());
-		// $this->load->view('tester');
+		$this->load->view('tester');
 		// print_r(FCPATH);
 		// copy(FCPATH . '/uploads/temp/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png', FCPATH . '/uploads/img/tempyO0C8RHU9bWS34BQ-2021-09-14_22:16:51.png');
 		// copy('./uploads/temp/tempAKPCdr8sZVcg5GTq-2021-09-15_10:09:13.png', './uploads/img/tempAKPCdr8sZVcg5GTq-2021-09-15_10:09:13.png');

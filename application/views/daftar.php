@@ -259,43 +259,76 @@
   <script type="text/javascript" src="<?= base_url('assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
   <!-- <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf' async defer></script> -->
   <!-- <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf&callback=loadMapScenario' async defer></script> -->
-  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+  <!-- <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script> -->
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfQiyNZ7M2P_vWQZWYNUNj0TSIBt8fhSE&callback=initMap"></script>
   <script type='text/javascript'>
-  function GetMap() {
-        var map = new Microsoft.Maps.Map('#myMap', {
-            credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
-            showLocateMeButton: true,
-            showMapTypeSelector: false
+    function initMap() {
+      // The location of Uluru
+      // var uluru = {
+      //     lat: -25.344,
+      //     lng: 131.036
+      // };
+      // The map, centered at Uluru
+      // var tester;
+      // var map = new google.maps.Map(document.getElementById('map'), {
+      //     zoom: 4,
+      //     center: uluru
+      // });
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var tester = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          var map = new google.maps.Map(document.getElementById('myMap'), {
+            zoom: 4,
+            center: tester
+          });
+          var marker = new google.maps.Marker({
+            position: tester,
+            map: map
+          });
         });
-        // console.log('tester');
-
-        //Request the user's location
-        navigator.geolocation.getCurrentPosition(function (position) {
-          // console.log(position);
-            var loc = new Microsoft.Maps.Location(
-                position.coords.latitude,
-                position.coords.longitude);
-
-            //Add a pushpin at the user's location.
-            var pin = new Microsoft.Maps.Pushpin(loc);
-            map.entities.push(pin);
-
-            //Center the map on the user's location.
-            map.setView({ center: loc, zoom: 15 });
-        });
+      }
+      // The marker, positioned at Uluru
+      //   var marker = new google.maps.Marker({position: uluru, map: map});
+      // var marker = new google.maps.LatLng(-25.344, 131.036);
     }
-  // function GetMap()
-  //   {
-  //     var map = new Microsoft.Maps.Map('#myMap', {
-  //           credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
-  //           showLocateMeButton: false,
-  //           showMapTypeSelector: false
-  //       });
-   
-  //       var map = new Microsoft.Maps.Map('#myMap');
+    // function GetMap() {
+    //       var map = new Microsoft.Maps.Map('#myMap', {
+    //           credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
+    //           showLocateMeButton: true,
+    //           showMapTypeSelector: false
+    //       });
+    //       // console.log('tester');
 
-  //       //Add your post map load code here.
-  //   }
+    //       //Request the user's location
+    //       navigator.geolocation.getCurrentPosition(function (position) {
+    //         // console.log(position);
+    //           var loc = new Microsoft.Maps.Location(
+    //               position.coords.latitude,
+    //               position.coords.longitude);
+
+    //           //Add a pushpin at the user's location.
+    //           var pin = new Microsoft.Maps.Pushpin(loc);
+    //           map.entities.push(pin);
+
+    //           //Center the map on the user's location.
+    //           map.setView({ center: loc, zoom: 15 });
+    //       });
+    //   }
+    // function GetMap()
+    //   {
+    //     var map = new Microsoft.Maps.Map('#myMap', {
+    //           credentials: 'AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf',
+    //           showLocateMeButton: false,
+    //           showMapTypeSelector: false
+    //       });
+
+    //       var map = new Microsoft.Maps.Map('#myMap');
+
+    //       //Add your post map load code here.
+    //   }
     // function GetMap() {
     //   var map = new Microsoft.Maps.Map('#myMap');
 
@@ -326,7 +359,7 @@
     //         // showLocateMeButton: false
     //         showMapTypeSelector: false
     //     });
-   
+
     //   Microsoft.Maps.loadModule('Microsoft.Maps.DrawingTools', function() {
     //     var tools = new Microsoft.Maps.DrawingTools(map);
     //     tools.showDrawingManager(function(manager) {
