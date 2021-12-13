@@ -241,6 +241,8 @@ $(document).ready(function () {
 			form_data = new FormData();
 		form_data.append("images", file_data);
 		form_data.append("temp", temp);
+		console.log(file_data);
+		console.log(form_data);
 		$.ajax({
 			url: base_url + "Login/uploadImageTemp",
 			dataType: "json",
@@ -250,11 +252,20 @@ $(document).ready(function () {
 			data: form_data,
 			type: "post",
 			success: function (result) {
-				$("img.avatar-pic2").attr(
-					"src",
-					base_url + "uploads/temp/" + result.img
-				);
-				$('input[name="file_temp"]').val(result.img);
+				// alert();
+				if(mobile == "mobile"){
+					$("img.mobile-avatar-pic2").attr(
+						"src",
+						base_url + "uploads/temp/" + result.img
+					);
+					$('input[name="file_temp"]').val(result.img);
+				}else{
+					$("img.avatar-pic2").attr(
+						"src",
+						base_url + "uploads/temp/" + result.img
+					);
+					$('input[name="file_temp"]').val(result.img);
+				}
 			},
 		});
 	});

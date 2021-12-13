@@ -64,12 +64,12 @@
                 <div class="box-body">
                     <div class="file-field">
                         <div class="mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" <?php if(mobile()){?> class="rounded-circle z-depth-1-half mobile-avatar-pic2" <?php }else{ ?> class="rounded-circle z-depth-1-half avatar-pic2" <?php } ?> alt="example placeholder avatar">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" <?php if (mobile()) { ?> class="rounded-circle z-depth-1-half mobile-avatar-pic2" style="width: 290px;" <?php } else { ?> class="rounded-circle z-depth-1-half avatar-pic2" <?php } ?> alt="example placeholder avatar">
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-mdb-color btn-rounded float-left">
                                 <span>Add photo</span>
-                                <input type="file" class="input-form-file2">
+                                <input type="file" class="input-form-file2" id="tester-input" onchange="uploadFile()">
                                 <input type="hidden" name="file_temp">
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                 <div class="box-body">
                     <div class="file-field">
                         <div class="mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" <?php if(mobile()){?> class="rounded-circle z-depth-1-half mobile-avatar-pic2" <?php }else{ ?> class="rounded-circle z-depth-1-half avatar-pic2" <?php } ?> alt="example placeholder avatar">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" <?php if (mobile()) { ?> class="rounded-circle z-depth-1-half mobile-avatar-pic2" <?php } else { ?> class="rounded-circle z-depth-1-half avatar-pic2" <?php } ?> alt="example placeholder avatar">
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-mdb-color btn-rounded float-left">
@@ -156,3 +156,46 @@
         </div>
     </div>
 </div>
+
+<script>
+    // $(document).ready(function () {
+    // $("#form-create-barang-toko").on("change", "input:file", function () {
+    // function uploadFile() {
+        // var file_data = $(this).prop("files")[0],
+        // var file_data = document.getElementById("tester-input").files[0],
+        //     temp = $('input[name="file_temp"]').val(),
+        //     form_data = new FormData();
+            
+        // form_data.append("images", file_data);
+        // form_data.append("temp", temp);
+        // console.log(file_data);
+        // console.log(form_data);
+        // $.ajax({
+        //     url: base_url + "Login/uploadImageTemp",
+        //     dataType: "json",
+        //     cache: false,
+        //     contentType: false,
+        //     processData: false,
+        //     data: form_data,
+        //     type: "post",
+        //     success: function(result) {
+                // alert(file_data);
+                // if(mobile == "mobile"){
+                // 	$("img.mobile-avatar-pic2").attr(
+                // 		"src",
+                // 		base_url + "uploads/temp/" + result.img
+                // 	);
+                // 	$('input[name="file_temp"]').val(result.img);
+                // }else{
+                // 	$("img.avatar-pic2").attr(
+                // 		"src",
+                // 		base_url + "uploads/temp/" + result.img
+                // 	);
+                // 	$('input[name="file_temp"]').val(result.img);
+                // }
+        //     },
+        // });
+    // }
+    // });
+    // });
+</script>
