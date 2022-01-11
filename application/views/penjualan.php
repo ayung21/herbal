@@ -23,7 +23,7 @@
                             </div>
                             <div class="prod_details_tab">
                                 <!-- <a href="#" class="prod_buy">Add to Cart</a> -->
-                                <a href="#" class="prod_details">Details</a>
+                                <a href="<?= base_url('Home/detail_penjualan/'.$row->id_transaksi); ?>" class="prod_details">Details</a>
                             </div>
                         </div>
                 <?php endif; ?>

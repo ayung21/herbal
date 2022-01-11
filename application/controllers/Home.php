@@ -14,6 +14,16 @@ class Home extends CI_Controller
 		);
 		$this->load->view('components/main', $data);
 	}
+	
+	public function detail_penjualan($id){
+		$this->load->model('Transaksi');
+		$data = array(
+			'data'		=> $this->Transaksi->getDetailBarang($id),
+			'content'	=> 'detail_penjualan',
+			'active'	=> 'home'
+		);
+		$this->load->view('components/main', $data);
+	}
 
 	public function homePenjualan()
 	{

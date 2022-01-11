@@ -18,6 +18,14 @@ class Transaksi extends CI_Model
         ")->result();
     }
 
+    public function getDetailBarang($id){
+        return $this->db->query("
+            SELECT *
+            FROM ".$this->table_view."
+            WHERE id_transaksi = ".$this->db->escape($id)."
+        ")->row();
+    }
+
     public function insertBarangToko($args){
         $data = array(
             'fk_user'   => user()->id_user,

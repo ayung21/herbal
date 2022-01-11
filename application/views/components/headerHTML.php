@@ -14,6 +14,7 @@
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
   <!-- Theme style -->
   <link href="<?= base_url(); ?>assets/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url(); ?>assets/dist/css/style.css" rel="stylesheet" type="text/css" />
   <!-- AdminLTE Skins. Choose a skin from the css/skins 
   folder instead of downloading all of them to reduce the load. -->
   <link href="<?= base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
