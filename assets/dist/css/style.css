@@ -265,7 +265,7 @@ a.join {
 }
 /*center content--------------------------*/
 .center_content {
-	width: 600px;
+	/* width: 600px; */
 	float: left;
 	padding: 5px 10px 5px 15px;
 }
@@ -319,7 +319,7 @@ span.border_cart {
 }
 /*---------prod_box----------*/
 .prod_box {
-	width: 173px;
+	width: 245px;
 	height: auto;
 	float: left;
 	padding: 10px 10px 10px 11px;
