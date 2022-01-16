@@ -10,6 +10,10 @@ class Transaksi extends CI_Model
         return $this->db->get($this->table_view)->result();
     }
 
+    public function getTotakllAllDataToko(){
+        return $this->db->get($this->table_view)->num_rows();
+    }
+
     public function getDataToko(){
         return $this->db->query("
             SELECT *

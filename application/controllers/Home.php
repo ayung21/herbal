@@ -7,9 +7,11 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$this->load->model('Transaksi');
+		$total = $this->Transaksi->getTotakllAllDataToko();
 		$data = array(
 			'data'		=> $this->Transaksi->getAllDataToko(),
 			'content'	=> 'penjualan',
+			'height' 	=> height($total),
 			'active'	=> 'home'
 		);
 		$this->load->view('components/main', $data);

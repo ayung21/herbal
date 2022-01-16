@@ -59,4 +59,24 @@ if (!function_exists('user')) {
         </script>';
         return $x;
     }
+
+    function height($total){
+        if($total > 5){
+            $hasil1 = $total/5; 
+            $hasil2 = round($hasil1) * 5;
+            if ($hasil2 == $total) {
+                $hasil3 = $hasil1 * 366;
+                $hasil = $hasil3.'px';
+            }elseif($hasil2 > $total){
+                $hasil3 = round($hasil1) * 366;
+                $hasil = $hasil3.'px';
+            }elseif($hasil2 < $total){
+                $hasil3 = (round($hasil1) + 1) * 366;
+                $hasil = $hasil3.'px';
+            }
+        }else{
+            $hasil = '366px';
+        }
+        return $hasil;
+    }
 }
