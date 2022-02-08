@@ -44,11 +44,19 @@
                                         <!-- User image -->
                                         <li class="user-header">
                                             <!-- <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" /> -->
-                                            <img src="<?= base_url('uploads/img/' . user()->image_name); ?>" class="img-circle" alt="User Image" />
-                                            <p>
-                                                <?= user()->nama_toko; ?>
-                                                <!-- <small>Member since Nov. 2012</small> -->
-                                            </p>
+                                            <?php if(substr(user()->image_name, 0, 4) == 'http'): ?>
+                                                <img src="<?= user()->image_name ?>" class="img-circle" alt="User Image" />
+                                                <p>
+                                                    <?= user()->nama_toko; ?>
+                                                    <!-- <small>Member since Nov. 2012</small> -->
+                                                </p>
+                                                <?php else: ?>
+                                                    <img src="<?= base_url('uploads/img/' . user()->image_name); ?>" class="img-circle" alt="User Image" />
+                                                    <p>
+                                                        <?= user()->nama_toko; ?>
+                                                        <!-- <small>Member since Nov. 2012</small> -->
+                                                    </p>
+                                                <?php endif; ?>
                                         </li>
                                         <li class="user-footer">
                                             <div class="pull-right">
