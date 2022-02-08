@@ -49,14 +49,15 @@ class Login extends CI_Controller
 
 	public function formDataDiriToko()
 	{
-		if (!empty(auth())) :
-			return redirect('Home');
-		else :
+		// if (!empty(auth())) :
+		// 	return redirect('Home');
+		// else :
 			$data = array(
+				'active'	=> 'list-toko',
 				'content'	=> 'form_datadiri_toko',
 			);
 			$this->load->view('components/main', $data);
-		endif;
+		// endif;
 	}
 
 	public function updateDataDiriToko()
