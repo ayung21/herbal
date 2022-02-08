@@ -5,7 +5,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Quick Example</h3>
+                    <h3 class="box-title">Update Data Diri</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
@@ -19,8 +19,8 @@
                             </div>
                             <div class="d-flex justify-content-center">
                                 <div class="btn btn-mdb-color btn-rounded float-left">
-                                    <span>Add photo</span>
-                                    <input type="file" class="input-form-file">
+                                    <span for="input-file">Add photo</span>
+                                    <input type="file" class="input-form-file" id="input-file" name="input-file">
                                 </div>
                             </div>
                         </div>
