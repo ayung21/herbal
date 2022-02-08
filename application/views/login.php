@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Snippet - BBBootstrap</title>
+  <title>Herbal</title>
   <link href="<?= base_url('assets/bootstrap/css/v4.3.1/bootstrap.min.css'); ?>" rel="stylesheet" />
   <link href="<?= base_url('assets/dist/css/font-awesome.min.css'); ?>" rel="stylesheet" />
   <style>

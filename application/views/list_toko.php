@@ -5,7 +5,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List Barang Toko</h3>
+                    <h3 class="box-title">List Toko</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
