@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Home extends CI_Controller
 {
 
@@ -252,7 +251,7 @@ class Home extends CI_Controller
 		$this->Transaksi->prosesDeleteDataToko($id);
 		echo json_encode('sukses');
 	}
-
+	
 	public function perhitungan()
 	{
 		$args = $this->input->post();
@@ -260,7 +259,7 @@ class Home extends CI_Controller
 		// $awal_longitude = 112.731177;
 		$awal_latitude 	= $args['latitude'];
 		$awal_longitude = $args['longitude'];
-
+		
 		$W	= 0.5;
 		$c1	= 0.8;
 		$c2	= 0.8;
@@ -350,5 +349,78 @@ class Home extends CI_Controller
 		// echo "<br>";
 		// echo "<br>";
 		echo json_encode($hasilGbest);
+	}
+
+	public function insertTranskasi()
+	{
+		$this->load->model(['Transaksi','MasterUser','MasterBarang']);
+		// $image_barang01 = "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-7451803/qnc_jelly_gamat_qnc_jelly_gamat_-_original_-_produk_bersertifikasi_bpom_-_halal_mui_full04_t3xzqxda.jpg ";
+		// $image_barang02 = "https://d2qjkwm11akmwu.cloudfront.net/products/204601_29-12-2019_20-56-12.jpg ";
+		// $image_barang03 = "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2020/12/27/c3b797cc-2da1-4617-a6cd-b002e7ed7a46.jpg ";
+		// $image_barang04 = "https://d2qjkwm11akmwu.cloudfront.net/products/142921_27-8-2019_13-11-26.jpg ";
+		// $image_barang05 = "https://cf.shopee.co.id/file/3cc40a7b1cc8fe6b4a33b67afa71711f ";
+		// $image_barang06 = "https://cf.shopee.co.id/file/208845c8b8f6f1973d5195c60b140c94 ";
+		// $image_barang07 = "https://cf.shopee.co.id/file/a78ef0b59aa3ae5bc4dca72d1c5e8f8e ";
+		// $image_barang08 = "https://cf.shopee.co.id/file/345e709e7417bd234a64fea5a3f395a5 ";
+		// $image_barang09 = "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/4/10/f37cf57c-d6c4-4904-be8a-aadbc64cd158.jpg ";
+		// $image_barang10 = "https://cf.shopee.co.id/file/88cc46a0e7a6bd23fbdd6a182129d34a ";
+		// $image_barang11 = "https://cf.shopee.co.id/file/c1795e0342534f3b9ad01f1bb4bb1aa6 ";
+		// $image_barang12 = "https://cf.shopee.co.id/file/eebe508f33a860cf25e58b70f160709f ";
+		// $image_barang13 = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bukalapak.com%2Fp%2Fkesehatan-2359%2Fkesehatan-telinga%2Falat-bantu-dengar%2F48yp613-jual-berkhasiat-earplus-obat-herbal-telinga-berair-bernanah-termurah-sih&psig=AOvVaw1e4-xADTaOYvk0LrDXQgDc&ust=1647057098311000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMjm4P2TvfYCFQAAAAAdAAAAABAT ";
+		// $image_barang14 = "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//102/MTA-1563699/ash-shihhah_ash-shihhah-original-multi-khasiat-kapsul-ekstrak-daun-binahong--60-kapsul-_full03.jpg ";
+		// $image_barang15 = "https://s3.bukalapak.com/img/38500952742/large/data.jpeg ";
+		// $image_barang16 = "https://cf.shopee.co.id/file/d19e7162011dd55d178a8d43af31900f ";
+		// $image_barang17 = "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/2/24/b1f9a53e-eb4b-4c9d-82ec-cb5185d3101b.jpg ";
+		// $image_barang18 = "https://cf.shopee.co.id/file/0010cb088c621c4eb59715aa1fa73e0f ";
+		// $image_barang19 = "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//99/MTA-2379285/naturafit_naturatik-50-kapsul-obat-asam-urat--nyeri-sendi---rematik-alami_full03.jpg ";
+
+		$toko = $this->MasterUser->getAllToko();
+		// print_r(count($toko));
+
+		// echo "<br>";
+		// die();
+		// id_transaksi	'fk_user'
+			// 'fk_barang'
+			// 'harga'
+			// 'diskon'
+			// 'date_created'
+			// deleted_by	date_deleted
+			// image_name	fk_transaksi	fk_user
+		for ($i=0; $i < count($toko); $i++) { 
+
+			$banyak_barang = rand(10,19);
+			$banyak = $this->db->query("select * from barang ORDER BY RAND() LIMIT ".$banyak_barang."")->result();
+			$harga = $this->db->query("select * from pengurangan ORDER BY RAND()")->row();
+			foreach ($banyak as $key) {
+				// print_r($key->harga + $harga->harga);
+				$data = array(
+					'fk_user'	 	=> $i+1,
+					'fk_barang' 	=> $key->id,
+					'harga'			=> $key->harga + $harga->harga,
+					'diskon'		=> 0,
+					'date_created'	=> date('Y-m-d H:i:s')
+				);
+				$this->db->insert('tbt_transkasi', $data);
+				$insert_id = $this->db->insert_id();
+
+				$image = array(
+					'image_name'	=> $key->image,
+					'fk_transaksi' 	=> $insert_id,
+					'fk_user'		=> $i+1,
+				);
+				$this->db->insert('tbm_image', $image);
+				// echo "<br>";
+			}
+
+			// print_r($banyak_barang);
+			// for ($k=0; $k < $banyak_barang; $k++) { 
+			// 	print_r($k);
+			// 	echo "<br>";
+			// }
+			// echo "<br>";
+			// die();
+			// print_r($i+1);
+			
+		}
 	}
 }
