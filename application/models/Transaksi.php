@@ -7,6 +7,7 @@ class Transaksi extends CI_Model
     protected $table_view = 'tbv_transaksi';
 
     public function getAllDataToko(){
+        $this->db->order_by('rand()');
         return $this->db->get($this->table_view)->result();
     }
 

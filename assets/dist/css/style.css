@@ -184,6 +184,7 @@ ul.left_menu li.odd a:hover {
 	background: url(images/box_bottom_bg.gif) no-repeat center bottom;
 }
 .product_title {
+	width: 200px;
 	color: #ff8a00;
 	padding: 5px 0 5px 0;
 	font-weight: bold;
@@ -369,7 +370,7 @@ a.prod_compare {
 	color: #159dcc;
 }
 a.prod_buy {
-	width: 75px;
+	width: 155px;
 	height: 24px;
 	display: block;
 	float: left;
