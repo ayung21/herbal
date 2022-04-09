@@ -39,6 +39,13 @@
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
+        <div class="center_content">
+            <?php if (mobile()) : ?>
+                <div id="myMap" style="position:relative;width:300px;height:277px;margin-left: 23px;"></div>
+            <?php else : ?>
+                <div id="myMap" style="position:relative;width:562px;height:284px;"></div>
+            <?php endif; ?>
+        </div>
     </div><!-- /.row -->
 </section><!-- /.content -->
 <script>
@@ -60,6 +67,7 @@
 				longitude: position.coords.longitude,
 			},
 			success: function (result) {
+                initMap(result.latitude_partikel,result.longitude_partikel);
 				$("table#table-terdekat").find("tbody tr").eq(0).remove();
 				$("table#table-terdekat")
 					.find("tbody")
@@ -77,4 +85,22 @@
 		// x.innerHTML = "Latitude: " + position.coords.latitude +
 		// "<br>Longitude: " + position.coords.longitude;
 	}
+    function initMap(latitude,longitude) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var tester = {
+            lat: parseFloat(latitude),
+            lng: parseFloat(longitude)
+          };
+          var map = new google.maps.Map(document.getElementById('myMap'), {
+            zoom: 4,
+            center: tester
+          });
+          var marker = new google.maps.Marker({
+            position: tester,
+            map: map
+          });
+        });
+      }
+    }
 </script>
