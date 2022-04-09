@@ -6,13 +6,53 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$this->load->model('Transaksi');
+		$this->load->library('pagination');
+
+		//konfigurasi pagination
+        $config['base_url'] = base_url().'Home/index/';
+        $config['total_rows'] = $this->db->count_all('tbv_transaksi'); //total row
+        $config['per_page'] = 10;  //show record per halaman
+        $config["uri_segment"] = 3;  // uri parameter
+        $choice = $config["total_rows"] / $config["per_page"];
+        // $config["num_links"] = floor($choice);
+
+		$config['next_link'] = 'Selanjutnya';
+		$config['prev_link'] = 'Sebelumnya';
+		$config['first_link'] = 'Awal';
+		$config['last_link'] = 'Akhir';
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+        $from = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+ 
 		$total = $this->Transaksi->getTotakllAllDataToko();
-		$data = array(
-			'data'		=> $this->Transaksi->getAllDataToko(),
-			'content'	=> 'penjualan',
-			'height' 	=> height($total),
-			'active'	=> 'home'
-		);
+
+		$data['data']    = $this->Transaksi->getAllDataToko($config["per_page"], $from);
+		$data['content'] = 'penjualan';
+		$data['height' ] = height($total);
+		$data['active']  = 'home';
+
+		$data['pagination'] = $this->pagination->create_links();
+		// $data = array(
+		// 	'data'		 => $this->Transaksi->getAllDataToko($config["per_page"], $from),
+		// 	'content'	 => 'penjualan',
+		// 	'height' 	 => height($total),
+		// 	'active'	 => 'home',
+		// 	'pagination' => $this->pagination->create_links()
+		// );
 		$this->load->view('components/main', $data);
 	}
 	
