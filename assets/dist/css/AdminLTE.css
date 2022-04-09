@@ -4401,7 +4401,7 @@ a.prod_buy {
 	display: block;
 	float: left;
 	background: url(../img/link_bg.gif) no-repeat center;
-	margin: -52px 0 0 15px;
+	margin: 2px 0 0 -25px;
 	text-align: center;
 	line-height: 24px;
 	text-decoration: none;
