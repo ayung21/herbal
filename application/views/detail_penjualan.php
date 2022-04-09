@@ -30,12 +30,14 @@
     </row>
 </section>
 <script type='text/javascript'>
+    initMap();
     function initMap() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
+          // console.log(parseFloat('<?= $data->latitude; ?>'));
           var tester = {
-            lat: parseFloat($('input[name="latitude"]').val()),
-            lng: parseFloat($('input[name="longitude"]').val())
+            lat: parseFloat('<?= $data->longitude; ?>'),
+            lng: parseFloat('<?= $data->latitude; ?>')
           };
           var map = new google.maps.Map(document.getElementById('myMap'), {
             zoom: 4,
