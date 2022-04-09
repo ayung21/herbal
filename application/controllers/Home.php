@@ -295,7 +295,7 @@ class Home extends CI_Controller
 	public function perhitungan()
 	{
 		$args = $this->input->post();
-		// $awal_latitude 	= -7.327451;
+		// $awal_latitude  = -7.327451;
 		// $awal_longitude = 112.731177;
 		$awal_latitude 	= $args['latitude'];
 		$awal_longitude = $args['longitude'];
@@ -340,9 +340,9 @@ class Home extends CI_Controller
 		$this->TableTemporary->createTableTemporaryGbest();
 		for ($i = 0; $i < $get->num_rows(); $i++) {
 			foreach ($data as $row) {
-				$latitude  = round(exp(pow($row->latitude - $get->result()[$i]->latitude, 2)), 6);
-				$longitude = round(exp(pow($row->longitude - $get->result()[$i]->longitude, 2)), 6);
-				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1), $get->result()[$i]->latitude, $get->result()[$i]->longitude);
+				$latitude  = round(exp(pow((float)$row->latitude - (float)$get->result()[$i]->latitude, 2)), 6);
+				$longitude = round(exp(pow((float)$row->longitude - (float)$get->result()[$i]->longitude, 2)), 6);
+				$this->TableTemporary->hasil_perhitungan($row->nama_toko, "0" . substr($latitude, 1), "0" . substr($longitude, 1), ($i + 1), (float)$get->result()[$i]->latitude, (float)$get->result()[$i]->longitude);
 			}
 			$getHasil = $this->TableTemporary->getDataHasilTerkecil($i + 1);
 			$this->TableTemporary->insertHasilPerPartikel($getHasil);
@@ -351,19 +351,19 @@ class Home extends CI_Controller
 		for ($i = 0; $i < $get->num_rows(); $i++) {
 			$baris1_1 = $W * 0;
 			$baris1_2 = $c1 * $R1;
-			$baris1_3 = ($awal_latitude - $get->result()[$i]->latitude) * $baris1_2;
-			$baris1_4 = ($awal_longitude - $get->result()[$i]->longitude) * $baris1_3;
-
+			$baris1_3 = ($awal_latitude - (float)$get->result()[$i]->latitude) * $baris1_2;
+			$baris1_4 = ($awal_longitude - (float)$get->result()[$i]->longitude) * $baris1_3;
+			
 			$baris2_2 = $c2 * $R2;
 			$baris2_3 = ($awal_latitude - $terkecil->latitude_partikel) * $baris2_2;
 			$baris2_4 = ($awal_longitude - $terkecil->longitude_partikel) * $baris2_2;
 
-			$this->TableTemporary->insertHasilUpdatePartikel($get->result()[$i]->latitude + $baris2_3, $get->result()[$i]->longitude + $baris2_4, $i + 1);
+			$this->TableTemporary->insertHasilUpdatePartikel((float)$get->result()[$i]->latitude + $baris2_3, (float)$get->result()[$i]->longitude + $baris2_4, $i + 1);
 		}
 		$getUpdate = $this->TableTemporary->selectUpdatePartikel();
 		for ($i = 0; $i < $getUpdate->num_rows(); $i++) {
 			foreach ($data as $row) {
-				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko, round(pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2), 6), round(pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2), 6), round(sqrt((pow(($row->latitude - $getUpdate->result()[$i]->latitude), 2) + pow(($row->longitude - $getUpdate->result()[$i]->longitude), 2))), 6), $i + 1);
+				$this->TableTemporary->insertHasilEuclideanPartikel($row->nama_toko, round(pow(((float)$row->latitude - (float)$getUpdate->result()[$i]->latitude), 2), 6), round(pow(((float)$row->longitude - (float)$getUpdate->result()[$i]->longitude), 2), 6), round(sqrt((pow(((float)$row->latitude - (float)$getUpdate->result()[$i]->latitude), 2) + pow(((float)$row->longitude - (float)$getUpdate->result()[$i]->longitude), 2))), 6), $i + 1);
 			}
 		}
 
