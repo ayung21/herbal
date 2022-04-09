@@ -171,7 +171,7 @@ class TableTemporary extends CI_Model
             'latitude'            => $latitude,
             'longitude_partikel'  => $latitude_partikel,
             'latitude_partikel'   => $longitude_partikel,
-            'hasil'               => round(sqrt($latitude + $longitude),6),
+            'hasil'               => round(sqrt((float)$latitude + (float)$longitude),6),
             'partikel'            => $parikel
         );
         return $this->db->insert('perhitungan', $data);
