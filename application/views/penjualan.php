@@ -13,9 +13,21 @@
                         <div class="product_img_mobile"><a href="<?= base_url('Home/detail_penjualan/' . $row->id_transaksi); ?>"><img class="img_barang_herbal_mobile" src="<?= !empty($row->image_name) ? $image : 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg'; ?>" alt="" border="0" height="215px" style="height: 25px;" /></a></div>
                         <div class="prod_price"><span class="reduce"></span> <span class="price">Rp <?= number_format($row->harga, 0, ',', '.') ?></span></div>
                     </div>
-                    <div class="prod_details_tab">
-                        <!-- <div class="prod_price"><span class="reduce"></span> <?= $row->nama_toko ?></div> -->
-                        <a href="#" class="prod_buy"><?= $row->nama_toko ?></a>
+                    <div class="prod_details_tab_mobile">
+                        <?php 
+                            if(strlen($row->nama_toko) > 0 && strlen($row->nama_toko) < 11): 
+                                $margin_left = '40px';
+                            elseif(strlen($row->nama_toko) > 10 && strlen($row->nama_toko) < 16):
+                                $margin_left = '35px';
+                            elseif(strlen($row->nama_toko) > 15 && strlen($row->nama_toko) < 21):
+                                $margin_left = '22px';
+                            elseif(strlen($row->nama_toko) > 20 && strlen($row->nama_toko) < 30):
+                                $margin_left = '5px';
+                            else:
+                                $margin_left = '0px';
+                            endif;
+                        ?>
+                        <a href="#" class="prod_buy_mobile" style="margin-left: <?= $margin_left; ?>;"><?= $row->nama_toko ?></a>
                         <!-- <a href="<?= base_url('Home/detail_penjualan/' . $row->id_transaksi); ?>" class="prod_details_mobile">Details</a> -->
                     </div>
                 </div>

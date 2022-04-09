@@ -4328,11 +4328,10 @@ Gradient Background colors
 	padding: 10px 10px 10px 11px;
 }
 .prod_box_mobile {
-	width: 160px;
+	width: 150px;
 	height: auto;
 	float: left;
 	padding: 10px 0 10px 0;
-	margin-right: 30px;
 }
 .center_prod_box {
 	width: 173px;
@@ -4344,7 +4343,7 @@ Gradient Background colors
 	border: 1px #f0f4f5 solid;
 }
 .center_prod_box_mobile {
-	width: 118px;
+	width: 150px;
 	height: auto;
 	float: left;
 	text-align: center;
@@ -4362,7 +4361,7 @@ Gradient Background colors
 	color: #ff8a00;
 	/* padding: 5px 0 5px 30px; */
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 12px;
 }
 .product_img_mobile {
 	padding: 5px 0 5px 0;
@@ -4401,7 +4400,7 @@ a.prod_buy {
 	display: block;
 	float: left;
 	background: url(../img/link_bg.gif) no-repeat center;
-	margin: 2px 0 0 -45px;
+	margin: 2px 0 0 15px;
 	text-align: center;
 	line-height: 24px;
 	text-decoration: none;

@@ -340,6 +340,12 @@ span.border_cart {
 	float: left;
 	margin: 3px 0 0 0;
 }
+.prod_details_tab_mobile {
+	width: 150px;
+	height: 31px;
+	float: left;
+	margin: 3px 0 0 0;
+}
 img.left_bt {
 	float: left;
 	padding: 6px 0 0 6px;
@@ -377,6 +383,18 @@ a.prod_buy {
 	background: url(images/link_bg.gif) no-repeat center;
 	margin: 2px 0 0 5px;
 	text-align: center;
+	line-height: 24px;
+	text-decoration: none;
+	color: #006600;
+}
+a.prod_buy_mobile {
+	width: 170px;
+	height: 24px;
+	display: block;
+	float: left;
+	background: url(images/link_bg.gif) no-repeat center;
+	/* margin: 2px 0 0 -10px; */
+	/* text-align: center; */
 	line-height: 24px;
 	text-decoration: none;
 	color: #006600;
