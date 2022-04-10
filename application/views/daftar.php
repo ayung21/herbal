@@ -190,7 +190,7 @@
             <div class="row">
               <img src="<?= base_url('assets/dist/img/toko.jpg'); ?>" class="logo" />
             </div>
-            <?php echo form_open('Login/daftarAkun') ?>
+            <form action="<?= base_url('Login/daftarAkun'); ?>" method="post">
             <div style="text-align: center;color: red;">
               <h2><?php echo $this->session->flashdata('error') ?></h2>
             </div>
