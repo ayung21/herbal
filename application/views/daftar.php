@@ -204,6 +204,8 @@
                 <h6 class="mb-0 text-sm">Email Address</h6>
               </label>
               <input class="form-control" type="text" name="email" placeholder="Enter a valid email address" value="" autocomplete="off" required />
+              <input type="hidden" name="latitude">
+              <input type="hidden" name="longitude">
             </div>
             <div class="row px-3">
               <label class="mb-1">
@@ -276,6 +278,8 @@
       // });
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
+          $('input[name="latitude"]').val(position.coords.latitude);
+          $('input[name="longitude"]').val(position.coords.longitude);
           var tester = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
