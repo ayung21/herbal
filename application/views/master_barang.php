@@ -64,7 +64,7 @@
             <div class="modal-body">
                 <div class="box-body">
                     <div class="form-group">
-                        <label>Kota</label>
+                        <label>Barang</label>
                         <input type="text" name="barang" class="form-control" placeholder="Enter Barang" required />
                     </div>
                 </div>
@@ -92,7 +92,7 @@
             <div class="modal-body">
                 <div class="box-body">
                     <div class="form-group">
-                        <label>Kota</label>
+                        <label>Barang</label>
                         <input type="hidden" name="id_barang">
                         <input type="text" name="nama_barang" class="form-control" placeholder="Enter Barang" required />
                     </div>
