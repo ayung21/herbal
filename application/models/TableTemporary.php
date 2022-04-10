@@ -151,7 +151,7 @@ class TableTemporary extends CI_Model
         return $this->db->query("
             SELECT * 
             FROM hasilperhitungan
-            ORDER BY hasil ASC
+            ORDER BY hasil DESC
             LIMIT 1
         ")->row();
     }
