@@ -260,7 +260,7 @@
   <!-- <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf' async defer></script> -->
   <!-- <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?branch=experimental&key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf&callback=loadMapScenario' async defer></script> -->
   <!-- <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script> -->
-  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy_JGpNVJfJ1s89NSagbdVIYP9QiHkZCo&callback=initMap"></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AtWtNvayYAjM3vq1VJn2iq4lOg9ikZxkHfTcoJvla1jeaeWAru64z9pUxE-r8mbf&callback=initMap"></script>
   <script type='text/javascript'>
     function initMap() {
       // The location of Uluru
