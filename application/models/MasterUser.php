@@ -12,8 +12,8 @@ class MasterUser extends CI_Model
             'email'    => $args['email'],
             'no_hp'    => $args['telp'],
             'access'   => 'user',
-            'latitude' => $args['longitude'],
-            'longitude'=> $args['latitude'],
+            'latitude' => $args['latitude'],
+            'longitude'=> $args['longitude'],
             'password' => password_hash($args['password'], PASSWORD_DEFAULT)
         );
         $this->db->insert($this->table, $data);

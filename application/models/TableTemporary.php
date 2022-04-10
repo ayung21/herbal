@@ -105,7 +105,7 @@ class TableTemporary extends CI_Model
             SELECT * 
             FROM euclideanpartikel
             WHERE partikel = ".$i."
-            ORDER BY hasil DESC
+            ORDER BY hasil ASC
             LIMIT 1
         ")->row();
     }
