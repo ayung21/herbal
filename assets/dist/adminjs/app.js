@@ -90,7 +90,7 @@ $(document).ready(function () {
 
 	$("#example1").on("click", ".get-data-update-kota", function () {
 		var id = $(this).attr("data-id");
-
+		
 		$.ajax({
 			type: "post",
 			url: base_url + "Home/getDataKota",
@@ -101,8 +101,32 @@ $(document).ready(function () {
 			success: function (result) {
 				$.each(result, function (key, value) {
 					$("#form-update-kota")
-						.find("input[name=" + key + "]")
-						.val(value);
+					.find("input[name=" + key + "]")
+					.val(value);
+				});
+			},
+		});
+	});
+
+	$("#example1").on("click", ".edit-long-lat", function () {
+		var id = $(this).attr("data-id");
+
+		$.ajax({
+			type: "post",
+			url: base_url + "Home/getDataLatLong",
+			dataType: "json",
+			data: {
+				id: id,
+			},
+			success: function (result) {
+				$.each(result, function (key, value) {
+					$("#form-update-lat-long")
+					.find("input[name=" + key + "]")
+					.val(value);
+
+					$("#form-update-lat-long")
+					.find("label#" + key + "")
+					.text(value);
 				});
 			},
 		});

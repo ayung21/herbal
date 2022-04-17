@@ -228,6 +228,20 @@ class Home extends CI_Controller
 		endif;
 	}
 
+	public function getDataLatLong(){
+		$this->load->model(['MasterUser']);
+		$id = $this->input->post('id');
+		$data = $this->MasterUser->getIdDetailToko($id);
+		echo json_encode($data);
+	}
+	
+	public function prosesUpdateLatLong(){
+		$this->load->model(['MasterUser']);
+		$args = $this->input->post();
+		$data = $this->MasterUser->updateLatLong($args);
+		return redirect($_SERVER['HTTP_REFERER']);
+	}
+
 	public function Pencarian()
 	{
 		$data = array(

@@ -31,6 +31,24 @@ class MasterUser extends CI_Model
         ")->row();
     }
 
+    public function getIdDetailToko($id)
+    {
+        return $this->db->query("
+            SELECT * 
+            FROM " . $this->table . "
+            WHERE id_user = " . $this->db->escape($id) . "
+        ")->row();
+    }
+
+    public function updateLatLong($args){
+        $data = array(
+            'latitude' => $args['latitude'],
+            'longitude'=> $args['longitude'],
+        );
+        $this->db->where('id_user', $args['id_user']);
+        $this->db->update($this->table, $data);
+    }
+
     public function getAllToko()
     {
         return $this->db->get($this->table_view_toko)->result();
