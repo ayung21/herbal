@@ -19,6 +19,8 @@
                         <?php endforeach; ?>
                     </select>
                     <button class="button-search" onclick="myFunction()">Search</button>
+
+                    <label style="float: right;">execution time <i id="executiontime"></i></label>
                 </div>
                 <div class="box-body">
                     <table id="table-terdekat" class="table table-bordered table-striped">
@@ -80,17 +82,18 @@
                 barang      : $('#barang').val()
 			},
 			success: function (result) {
-                initMap(result.latitude_partikel,result.longitude_partikel);
+                initMap(result.hasilGbest.latitude_partikel,result.hasilGbest.longitude_partikel);
+                $('#executiontime').text(result.execution_time);
 				$("table#table-terdekat").find("tbody tr").eq(0).remove();
 				$("table#table-terdekat")
 					.find("tbody")
 					.append(
 						$("<tr>")
-							.append($("<td>").append(result.partikel))
-							.append($("<td>").append(result.latitude_partikel))
-							.append($("<td>").append(result.longitude_partikel))
-							.append($("<td>").append(result.nama_toko))
-							.append($("<td>").append(result.hasil))
+							.append($("<td>").append(result.hasilGbest.partikel))
+							.append($("<td>").append(result.hasilGbest.latitude_partikel))
+							.append($("<td>").append(result.hasilGbest.longitude_partikel))
+							.append($("<td>").append(result.hasilGbest.nama_toko))
+							.append($("<td>").append(result.hasilGbest.hasil))
 					);
 			},
 		});

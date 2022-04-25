@@ -308,6 +308,7 @@ class Home extends CI_Controller
 	
 	public function perhitungan()
 	{
+		$time_start = microtime(true);
 		$args = $this->input->post();
 		// $awal_latitude  = -7.327451;
 		// $awal_longitude = 112.731177;
@@ -396,20 +397,13 @@ class Home extends CI_Controller
 		// $hasilUpdatePartikel 	= $this->TableTemporary->selectHasilUpdatePartikel();
 		// $hasilEuclideanPartikel = $this->TableTemporary->selectHasilEuclideanPartikel();
 		$hasilGbest 			= $this->TableTemporary->selectHasilGbest();
-		// echo json_encode($hasil);
-		// echo "<br>";
-		// echo "<br>";
-		// echo json_encode($terkecil);
-		// echo "<br>";
-		// echo "<br>";
-		// echo json_encode($hasilUpdatePartikel);
-		// echo "<br>";
-		// echo "<br>";
-		// echo json_encode($hasilEuclideanPartikel);
-		// echo json_encode($get->result());
-		// echo "<br>";
-		// echo "<br>";
-		echo json_encode($hasilGbest);
+		$time_end = microtime(true);
+		$execution_time = ($time_end - $time_start)/60;
+		$hasil = array(
+			'hasilGbest' 	 => $hasilGbest,
+			'execution_time' => round($execution_time,6),
+		);
+		echo json_encode($hasil);
 	}
 
 	public function insertTranskasi()
