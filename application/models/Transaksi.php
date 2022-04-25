@@ -24,6 +24,14 @@ class Transaksi extends CI_Model
         ")->result();
     }
 
+    public function getIdToko($barang){
+        return $this->db->query("
+            SELECT *
+            FROM ".$this->table."
+            WHERE fk_barang = ".$this->db->escape($barang)."
+        ")->result();
+    }
+
     public function getDetailBarang($id){
         return $this->db->query("
             SELECT *

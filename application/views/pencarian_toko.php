@@ -12,7 +12,8 @@
                     <div class="infor"></div>
                 </div><!-- /.box-header -->
                 <div class="box-header">
-                    <select name="barang" class="">
+                    <select name="barang" id="barang">
+                        <option value=""></option>
                         <?php foreach (barang() as $row) : ?>
                             <option value="<?= $row->id_barang ?>"><?= $row->nama_barang ?></option>
                         <?php endforeach; ?>
@@ -57,12 +58,16 @@
 </section><!-- /.content -->
 <script>
     function myFunction() {
-        if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
-		} else {
-			//   x.innerHTML = "Geolocation is not supported by this browser.";
-			$("div.infor").text("Geolocation is not supported by this browser.");
-		}
+        if($('#barang').val() != ''){
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                //   x.innerHTML = "Geolocation is not supported by this browser.";
+                $("div.infor").text("Geolocation is not supported by this browser.");
+            }
+        }else{
+            alert('silahkan pilih barang');
+        }
     }
     function showPosition(position) {
 		$.ajax({
@@ -70,8 +75,9 @@
 			url: base_url + "Home/perhitungan",
 			dataType: "json",
 			data: {
-				latitude: position.coords.latitude,
-				longitude: position.coords.longitude,
+				latitude    : position.coords.latitude,
+				longitude   : position.coords.longitude,
+                barang      : $('#barang').val()
 			},
 			success: function (result) {
                 initMap(result.latitude_partikel,result.longitude_partikel);

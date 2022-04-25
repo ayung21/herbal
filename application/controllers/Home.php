@@ -311,8 +311,10 @@ class Home extends CI_Controller
 		$args = $this->input->post();
 		// $awal_latitude  = -7.327451;
 		// $awal_longitude = 112.731177;
+		// $barang 		= 15;
 		$awal_latitude 	= $args['latitude'];
 		$awal_longitude = $args['longitude'];
+		$barang 		= $args['barang'];
 		
 		$W	= 0.5;
 		$c1	= 0.8;
@@ -340,8 +342,13 @@ class Home extends CI_Controller
 			$this->db->query("DROP TEMPORARY TABLE Gbest");
 		}
 
-		$this->load->model(['MasterUser', 'TableTemporary']);
-		$data = $this->MasterUser->getAllToko();
+		$this->load->model(['MasterUser', 'TableTemporary','Transaksi']);
+		$getToko = $this->Transaksi->getIdToko($barang);
+		foreach ($getToko as $key) {
+			$toko[] = $key->fk_user;
+		}
+		// $data = $this->MasterUser->getAllToko();
+		$data = $this->MasterUser->getSelectToko($toko);
 		$this->TableTemporary->createTableTemporaryPartikel();
 		foreach ($data as $row) {
 			$this->TableTemporary->insertTemporaryPartikel(substr($row->longitude, 0, -5) . rand(0, 99999), substr($row->latitude, 0, -5) . rand(0, 99999));

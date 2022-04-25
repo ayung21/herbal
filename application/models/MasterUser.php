@@ -73,6 +73,13 @@ class MasterUser extends CI_Model
         ");
     }
 
+    public function getSelectToko($id){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where_in('id_user',$id);
+        return $this->db->get()->result();
+    }
+
     public function updateDataToko($args){
         $data = array(
             'nama_toko' => $args['toko'],
