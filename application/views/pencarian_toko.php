@@ -9,9 +9,16 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Jarak Terdekat</h3>
-                    <button class="button-search" onclick="myFunction()">Search</button>
                     <div class="infor"></div>
                 </div><!-- /.box-header -->
+                <div class="box-header">
+                    <select name="barang" class="">
+                        <?php foreach (barang() as $row) : ?>
+                            <option value="<?= $row->id_barang ?>"><?= $row->nama_barang ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button class="button-search" onclick="myFunction()">Search</button>
+                </div>
                 <div class="box-body">
                     <table id="table-terdekat" class="table table-bordered table-striped">
                         <thead>
